@@ -1,0 +1,144 @@
+
+        body {
+            background-color: #f2f2f2;
+        }
+
+        /* nav css */
+        .navcontainer {
+            padding: 20px;
+            font-family: 'Open Sans', sans-serif;
+            background-color: #f2f2f2;
+            text-align: right;
+            padding-right: 82px;
+
+        }
+
+        .btns {
+
+            display: inline-block;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            text-align: right;
+        }
+
+        .ul_item {
+
+            display: inline-block;
+            position: relative;
+            vertical-align: middle;
+            padding: 2px;
+            margin: 0;
+            height: 100%;
+
+        }
+
+        .btns li a {
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 50px;
+            border: #404040 solid;
+            border-width: 2px;
+            font-family: Georgia, serif;
+        }
+
+        .active {
+
+            color: white;
+            background-color: black;
+        }
+
+        .nonactive {
+            color: black;
+            background-color: white;
+        }
+
+        .btns li a:hover {
+            background-color: rgba(128, 128, 128, 0.55);
+        }
+
+
+
+        /* form css */
+        .outcon {
+            width: 90%;
+            display: flex;
+            overflow: hidden;
+            flex-direction: row;
+            height: 100%;
+        }
+
+        .incon {
+            overflow: hidden;
+            display: inline-block;
+            width: 50%;
+            height: 100%;
+
+        }
+
+        .incon img {
+            width: 400px;
+            margin: 100px 20%;
+            margin-left: 30%;
+            text-align: center;
+        }
+
+        .headingcon h5 {
+
+            margin-bottom: 5px;
+            font-size: 20px;
+        }
+
+        .headingcon h2 {
+
+            font-size: 30px;
+            margin-top: 5px;
+        }
+
+        .con-itm {
+
+            display: flex;
+            margin: 20px;
+        }
+
+        .formcon {
+
+            width: 90%;
+        }
+
+        .inp {
+            width: 100%;
+            padding: 12px 12px;
+            text-decoration: none;
+        }
+
+        .formcon label {
+            font-size: 20px;
+            padding: 5px;
+            width: 40%;
+        }
+
+        .con-itm input {
+            font-size: 20px;
+            color: black;
+            border-radius: 5px;
+            letter-spacing: 2px;
+            border-style: solid;
+            border-color: #b3b3b3;
+            border-width: 1px;
+        }
+
+        .formcon button {
+            font-size: 20px;
+            padding: 10px 12px;
+            background-color: black;
+            border-radius: 5px;
+            color: white;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .con-radio {
+            margin: 20px;
+        }
+ 

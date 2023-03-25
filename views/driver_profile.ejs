@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Driver_Profile</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://netdna.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <link id="u-theme-google-font" rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+    <link rel="stylesheet" href="css/driver_profile.css">
+    <script>
+        //loader js
+        function hideLoader() {
+            let l_b = document.getElementById('loader_bg');
+            l_b.style.display = 'none';
+        }
+        setTimeout(hideLoader, 5 * 100);
+    </script>
+</head>
+
+<body>
+    <div class="loader_bg" id="loader_bg">
+        <div class="loader"><img src="../images/cabby_logo_TRA.gif" width="100px" alt="#" /></div>
+    </div>
+    <header>
+        <div class="navcontainer">
+            <ul class="btns">
+                <li class="ul_item" class="nav-itm">
+
+                    <div class="nav-icon">
+                        <img src="../images/cabby_logo_TRA.png" width="25px" alt="">
+                        <a href="driver_home.html" id="ad_booking" class="nav-itm" class="text">Home</a>
+                    </div>
+                </li>
+                <li class="ul_item" class="nav-itm">
+                    <div class="active">
+                        <div class="nav-icon">
+                            <img src="../images/account-solid.gif" width="25px" alt="">
+                            <a href="driver_profile.html" id="username" class="nav-itm" class="text">Username</a>
+                        </div>
+                    </div>
+                </li>
+                <li class="ul_item" class="nav-itm">
+                    <div class="nav-icon">
+                        <img src="../images/assignment-solid.gif" width="25px" alt="">
+                        <a href="driver_Advance_Booking_List.html" id="ad_booking" class="nav-itm" class="text">Your
+                            Advance Booking List</a>
+                    </div>
+                </li>
+                <li class="ul_item" class="nav-itm">
+                    <div class="nav-icon">
+                        <img src="../images/28-info-solid.gif" width="25px" alt="">
+                        <a href="#" id="info" class="nav-itm" class="text">Info</a>
+                    </div>
+                </li>
+                <li class="ul_item" class="nav-itm">
+                    <div class="nav-icon">
+                        <img src="../images/logout.png" width="25px" alt="">
+                        <button id="logout" class="nav-itm" class="text">Logout</button>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </header>
+
+    <div class="container bootstrap snippets bootdey">
+        <div class="row">
+            <div class="profile-nav col-md-3">
+                <div class="panel">
+                    <div class="user-heading round">
+                        <a href="#">
+                            <img src="../images/people.gif" alt="">
+                        </a>
+                        <h1>CABBY</h1>
+                    </div>
+                    <ul class="nav nav-pills nav-stacked">
+                        <li class="active"><a href="#"> <i class="fa fa-user"></i> Profile</a></li>
+                        <li><a href="#"> <i class="fa fa-edit"></i> Edit profile</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="profile-info col-md-9">
+                <div class="panel">
+                    <div class="bio-graph-heading">
+                        “Dare to live the life you’ve always wanted.”
+
+                    </div>
+                    <div class="panel-body bio-graph-info">
+                        <h1>Driver Profile</h1>
+                        <div class="row">
+                            <div class="bio-row">
+                                <p><span>First Name </span>: CABBY</p>
+                            </div>
+                            <div class="bio-row">
+                                <p><span>licence Number </span>: G02GD43423</p>
+                            </div>
+                            <div class="bio-row">
+                                <p><span>Last Name </span>: CABBY</p>
+                            </div>
+                            <div class="bio-row">
+                                <p><span>Vehicle Number </span>: GJ01BTECH2023</p>
+                            </div>
+                            <div class="bio-row">
+                                <p><span>Birthday</span>: 13 July 1983</p>
+                            </div>
+                            <div class="bio-row">
+                                <p><span>Email </span>: cabby@gmail.com
+                                </p>
+                            </div>
+                            <div class="bio-row">
+                                <p><span>Mobile </span>:8945387565</p>
+                            </div>
+                            <div class="bio-row">
+                                <p><span>Cabby joining date </span>: 01/01/2023</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

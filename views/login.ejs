@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link id="u-theme-google-font" rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+
+    <title>login</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 16px;
+
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: #f2f2f2;
+            line-height: 1.6;
+            font-size: 16px;
+        }
+
+        /* nav css */
+        .navcontainer {
+            padding: 20px;
+            font-family: 'Open Sans', sans-serif;
+            background-color: #f2f2f2;
+            text-align: right;
+            padding-right: 82px;
+
+        }
+
+        .btns {
+
+            display: inline-block;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            text-align: right;
+        }
+
+        .ul_item {
+
+            display: inline-block;
+            position: relative;
+            vertical-align: middle;
+            padding: 2px;
+            margin: 0;
+            height: 100%;
+
+        }
+
+        .btns li a {
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 50px;
+            border: #404040 solid;
+            border-width: 2px;
+            font-family: Georgia, serif;
+        }
+
+        .active {
+
+            color: white;
+            background-color: black;
+        }
+
+        .nonactive {
+            color: black;
+            background-color: white;
+        }
+
+        .btns li a:hover {
+            background-color: rgba(128, 128, 128, 0.55);
+        }
+
+
+        /* form css */
+        .con {
+
+            margin: 10px auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo {
+            width: 300px;
+            margin: 10px auto;
+        }
+
+        .container {
+            margin: 10px auto;
+            padding: 20px;
+            width: 38%;
+            background-color: #ffffff;
+        }
+
+        .imgcon {
+            margin: 50px 0px;
+            margin-bottom: 0px;
+        }
+
+        .con input {
+            border-style: solid;
+            border-color: #b3b3b3;
+            border-width: 1px;
+
+        }
+
+        .inp {
+            width: 100%;
+            padding: 12px 12px;
+            text-decoration: none;
+        }
+
+        .con button {
+            width: 100%;
+            background-color: black;
+            border-radius: 30px;
+            color: #ffffff;
+            padding: 10px 12px;
+            cursor: pointer;
+        }
+
+        .con-itm {
+            display: block;
+            margin: 10px;
+        }
+
+        .ex-link {
+            margin: 20px;
+
+        }
+
+        .con a {
+            text-decoration: none;
+            color: black;
+        }
+
+        .con-itm1 a {
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="navcontainer">
+            <ul class="btns">
+                <li class="ul_item" class="login">
+                    <a href="/index" class="active">Login</a>
+                </li>
+                <li class="ul_item" class="signup">
+                    <a href="/sign_up" class="nonactive">Sign-up</a>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <form action="/login" method="POST">
+        <div class="con">
+            <center>
+                <div class="imgcon">
+                    <img src="images/cabby_logo_TRA.gif" alt="logo" class="logo">
+                </div>
+            </center>
+
+            <div class="container">
+                <div class="con-itm">
+                    <label for="uname"><b>Email</b></label>
+                    <input type="text" placeholder="Enter email" name="email" class="inp" required>
+                </div>
+                <div class="con-itm">
+                    <label for="psw"><b>Password</b></label>
+                    <input type="password" placeholder="Enter Password" name="password" class="inp" required>
+                </div>
+                <div class="con-itm">
+                    <label>
+                        <input type="checkbox" checked="checked" name="remember"> Remember me
+                    </label>
+                </div>
+                <center>
+                    <div class="con-itm1">
+                        <button type="submit"><a href="/user_home">Login</a></button>
+                    </div>
+                </center>
+
+            </div>
+
+            <center class="ex-link">
+                <a href="/sign_up">Don't have an account ?</a>
+            </center>
+        </div>
+    </form>
+
+</body>
+
+</html>

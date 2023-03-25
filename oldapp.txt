@@ -1,0 +1,163 @@
+// require("dotenv").config();
+const express = require("express");
+const session = require("express-session");
+const passport = require("passport");
+const LocalStrategy = require("passport-local").Strategy;
+const bodyParser = require("body-parser");
+const ejs = require("ejs");
+var flash = require("connect-flash");
+const mongoose = require("mongoose");
+const md = require(__dirname + "/models/Schemas.js");
+// const Client = require(__dirname + "/models/Schemas.js");
+
+// var popup = require("popups");
+// const session = require("express-session");
+// const passport = require("passport");
+// const passportLocalMongoose = require("passport-local-mongoose");
+
+const app = express();
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static("public"));
+app.use(bodyParser.json());
+app.use(flash());
+app.use(
+  session({
+    secret: "mysecretkey",
+    resave: false,
+    saveUninitialized: false,
+  })
+);
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.set("view engine", "ejs");
+
+mongoose.set("strictQuery", true);
+mongoose
+  .connect("mongodb://127.0.0.1:27017/CabbyDB", {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => console.log("Connected!"))
+  .catch((err) => console.log(err));
+
+// mongoose.set("useCreateIndex", true);
+
+passport.use(
+  new LocalStrategy({ usernameField: "email" }, (email, password, done) => {
+    md.Clients.findOne({ email }, (err, client) => {
+      // console.log(user);
+      if (err) return done(err);
+      if (!client) {
+        return done(null, false, { message: "Invalid username or password" });
+      }
+      if (client.password !== password) {
+        return done(null, false, { message: "Invalid username or password" });
+      }
+      return done(null, client);
+    });
+  })
+);
+
+passport.serializeUser((client, done) => {
+  done(null, client.id);
+});
+
+passport.deserializeUser((id, done) => {
+  md.Clients.findById(id, (err, client) => {
+    if (err) return done(err);
+    done(null, client);
+  });
+});
+
+app.get("/login", function (req, res) {
+  res.render("login", { message: req.flash("error") });
+});
+
+app.post(
+  "/login",
+  passport.authenticate("local", {
+    successRedirect: "/",
+    failureRedirect: "/login",
+    failureFlash: true,
+    usernameField: "email",
+  })
+);
+
+app.get("/logout", (req, res) => {
+  req.logout();
+  res.redirect("/login");
+});
+
+app.get("/sign_up", (req, res) => {
+  res.render("sign_up", { message: req.flash("error") });
+});
+
+app.post("/sign_up", (req, res) => {
+  const client = new md.Clients({
+    name: req.body.name,
+    email: req.body.email,
+    password: req.body.password,
+    phoneno: req.body.phoneno,
+    gender: req.body.gender,
+    verify: req.body.role,
+  });
+  // console.log(req.body);
+  client.save((err) => {
+    if (err) {
+      // console.log(err);
+      req.flash("error", "Error creating user");
+      return res.redirect("/sign_up");
+    }
+    // console.log(user);
+    res.redirect("/login");
+  });
+});
+
+app.get("/", function (req, res) {
+  // console.log(req.body);
+  // const login_client = md.Client.findOne({ email: req.body.uname });
+  if (!req.client) {
+    // console.log(req.user);
+    return res.redirect("/login");
+  }
+  const role = req.client.role;
+  const name = req.client.name;
+  const filename = role === "Auto-driver" ? "driver_home" : "User_home";
+  res.render(filename, { name });
+});
+
+// app.post("/sign_up", function (req, res) {
+//   // const clientExist = md.Client.findOne({ email: req.body.email });
+//   md.Client.findOne({ email: req.body.email }, function (err, clientExist) {
+//     console.log(clientExist);
+//     if (clientExist) {
+//       return res.send("Email alredy Exist");
+//     } else {
+//       const user = new md.Client({
+//         name: req.body.name,
+//         email: req.body.email,
+//         password: req.body.password,
+//         phoneno: req.body.phoneno,
+//         gender: req.body.gender,
+//         verify: "user",
+//       });
+//       user.save();
+//       // console.log(req.body);
+//       res.redirect("/");
+//     }
+//   });
+// });
+
+app.get("/User_home", function (req, res) {
+  res.render("User_home");
+});
+
+app.get("/driver_home", function (req, res) {
+  res.render("driver_home");
+});
+
+app.listen(3000, function () {
+  console.log("Server started on port 3000.");
+});

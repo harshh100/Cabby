@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign-up</title>
+    <style>
+        body {
+            background-color: #f2f2f2;
+        }
+
+        /* nav css */
+
+        .navcontainer {
+            padding: 20px;
+            font-family: 'Open Sans', sans-serif;
+            background-color: #f2f2f2;
+            text-align: right;
+            padding-right: 82px;
+        }
+
+        .btns {
+            display: inline-block;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            text-align: right;
+        }
+
+        .ul_item {
+            display: inline-block;
+            position: relative;
+            vertical-align: middle;
+            padding: 2px;
+            margin: 0;
+            height: 100%;
+        }
+
+        .btns li a {
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 50px;
+            border: #404040 solid;
+            border-width: 2px;
+            font-family: Georgia, serif;
+        }
+
+        .active {
+            color: white;
+            background-color: black;
+        }
+
+        .nonactive {
+            color: black;
+            background-color: white;
+        }
+
+        .btns li a:hover {
+            background-color: rgba(128, 128, 128, 0.55);
+        }
+
+        /* form css */
+
+        .outcon {
+            width: 90%;
+            display: flex;
+            overflow: hidden;
+            flex-direction: row;
+            height: 100%;
+        }
+
+        .incon {
+            overflow: hidden;
+            display: inline-block;
+            width: 50%;
+            height: 100%;
+        }
+
+        .incon img {
+            width: 400px;
+            margin: 100px 20%;
+            margin-left: 30%;
+            text-align: center;
+        }
+
+        .headingcon h5 {
+            margin-bottom: 5px;
+            font-size: 20px;
+        }
+
+        .headingcon h2 {
+            font-size: 30px;
+            margin-top: 5px;
+        }
+
+        .con-itm {
+            display: flex;
+            margin: 20px;
+        }
+
+        .formcon {
+            width: 90%;
+        }
+
+        .inp {
+            width: 100%;
+            padding: 12px 12px;
+            text-decoration: none;
+        }
+
+        .formcon label {
+            font-size: 20px;
+            padding: 5px;
+            width: 40%;
+        }
+
+        .con-itm input {
+            font-size: 20px;
+            color: #000000;
+            border-radius: 5px;
+            letter-spacing: 2px;
+            border-style: solid;
+            border-color: #b3b3b3;
+            border-width: 1px;
+        }
+
+        .formcon button {
+            font-size: 20px;
+            padding: 10px 12px;
+            background-color: black;
+            border-radius: 5px;
+            color: white;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .con-radio {
+            margin: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="navcontainer">
+            <ul class="btns">
+                <li class="ul_item" class="login">
+                    <a href="/" class="nonactive">Login</a>
+                </li>
+                <li class="ul_item" class="signup">
+                    <a href="/sign_up" class="active">Sign-up</a>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <div class="outcon">
+        <div class="incon">
+            <div class="imgcon">
+                <img src="images/cabby_logo_TRA.gif" class="" alt="">
+            </div>
+        </div>
+        <div class="incon">
+            <div class="datacon">
+                <div class="headingcon">
+                    <center>
+                        <h5>Welcome to Cabby!!</h5>
+                        <h2>Sign-Up</h2>
+                    </center>
+                </div>
+                <div class="formcon">
+                    <form action="/sign_up" method="POST">
+                        <div class="con">
+                            <div class="con-itm">
+                                <label for="name"><b>Name</b></label>
+                                <input type="text" placeholder="Enter Your Name" name="name" class="inp">
+                            </div>
+                            <div class="con-itm">
+                                <label for="email"><b>Email</b></label>
+                                <input type="email" placeholder="Enter A Vlaid Email Address" name="email" class="inp"
+                                    required>
+                            </div>
+                            <div class="con-itm">
+                                <label for="psw"><b>Password</b></label>
+                                <input type="password" placeholder="Enter Your Password" name="password" class="inp">
+                            </div>
+                            <div class="con-itm">
+                                <label for="Phone"><b>Phone</b></label>
+                                <input type="tel" placeholder="Enter Your Phone Number" name="phoneno" class="inp"
+                                    required>
+                            </div>
+                            <div class="con-radio">
+                                <input type="radio" id="male" name="gender" value="male">
+                                <label for="male">Male</label><br>
+                                <input type="radio" id="female" name="gender" value="female">
+                                <label for="female">Female</label><br>
+                            </div>
+                            <div class="con-radio">
+                                <input type="radio" id="male" name="role" value="Student">
+                                <label for="Student">Student</label><br>
+                                <input type="radio" id="female" name="role" value="Auto-driver">
+                                <label for="Auto-driver">Auto-driver</label><br>
+                            </div>
+                            <!-- </div> -->
+
+                            <div class="con-itm">
+                                <button type="submit"><a href="/"></a>Sign-Up</button>
+                            </div>
+
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

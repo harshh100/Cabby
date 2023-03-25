@@ -1,0 +1,131 @@
+
+* {
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: #f2f2f2;
+    line-height: 1.6;
+    font-size: 16px;
+}
+
+/* nav css */
+.navcontainer {
+    padding: 20px;
+    font-family: 'Open Sans', sans-serif;
+    background-color: #f2f2f2;
+    text-align: right;
+    padding-right: 82px;
+
+}
+
+.btns {
+
+    display: inline-block;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    text-align: right;
+}
+
+.ul_item {
+
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+    padding: 2px;
+    margin: 0;
+    height: 100%;
+
+}
+
+.btns li a {
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 50px;
+    border: #404040 solid;
+    border-width: 2px;
+    font-family: Georgia, serif;
+}
+
+.active {
+
+    color: white;
+    background-color: black;
+}
+
+.nonactive {
+    color: black;
+    background-color: white;
+}
+
+.btns li a:hover {
+    background-color: rgba(128, 128, 128, 0.55);
+}
+
+
+/* form css */
+.con {
+
+    margin: 10px auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.logo {
+    width: 300px;
+    margin: 10px auto;
+}
+
+.container {
+    margin: 10px auto;
+    padding: 20px;
+    width: 38%;
+    background-color: #ffffff;
+}
+
+.imgcon {
+    margin: 50px 0px;
+    margin-bottom: 0px;
+}
+
+.con input {
+    border-style: solid;
+    border-color: #b3b3b3;
+    border-width: 1px;
+
+}
+
+.inp {
+    width: 100%;
+    padding: 12px 12px;
+    text-decoration: none;
+}
+
+.con button {
+    width: 100%;
+    background-color: black;
+    border-radius: 30px;
+    color: #ffffff;
+    padding: 10px 12px;
+    cursor: pointer;
+}
+
+.con-itm {
+    display: block;
+    margin: 10px;
+}
+
+.ex-link {
+    margin: 20px;
+
+}
+
+.con a {
+    text-decoration: none;
+    color: black;
+}
