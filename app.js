@@ -40,7 +40,11 @@ mongoose
 
 // define a user schema
 const trip_list_Schema = new mongoose.Schema({
-  name: {
+  sen_name: {
+    type: String,
+    require: true,
+  },
+  rec_name: {
     type: String,
     require: true,
   },
@@ -248,7 +252,12 @@ app.get("/", (req, res) => {
       }
     );
   } else if (filename === "Student_home")
-    res.render(filename, { username: email });
+    User.findOne({ email: email }, function (err, founduser) {
+      res.render(filename, {
+        username: email,
+        av_auto: founduser.Confirm_avi_list,
+      });
+    });
 });
 
 app.post("/student_req", function (req, res) {
@@ -288,14 +297,40 @@ app.post("/student_req", function (req, res) {
 });
 
 app.post("/driver_req", function (req, res) {
-  const { price, d_req_with_price } = req.body;
-  const avAuto = JSON.parse(d_req_with_price);
-
   console.log(req.body);
-  console.log(avAuto.name);
-  console.log(avAuto.role);
+  const { price, d_req_with_price, driver_name } = req.body;
+  const avAuto = JSON.parse(d_req_with_price);
+  console.log(avAuto.email);
+  console.log(driver_name);
   console.log(avAuto.to);
-  console.log(price);
+  console.log(avAuto.from);
+  const d_req = new AvilableAuto_list({
+    rec_name: avAuto.email,
+    role: avAuto.role,
+    sen_name: driver_name,
+    from: avAuto.from,
+    to: avAuto.to,
+    time: avAuto.time,
+    date: avAuto.date,
+    passengers: avAuto.passengers,
+    price: price,
+  });
+
+  User.findOne({ email: avAuto.email }, function (err, founduser) {
+    if (err) {
+      console.log(err);
+    } else {
+      founduser.Confirm_avi_list.push(d_req);
+      founduser.save();
+      res.redirect("/");
+    }
+  });
+
+  // console.log(req.body);
+  // console.log(avAuto.name);
+  // console.log(avAuto.role);
+  // console.log(avAuto.to);
+  // console.log(price);
 });
 
 // start the server

@@ -144,7 +144,7 @@
                     </select>
                 </p>
                 <center>
-                    <input type="submit" value="submit" id="submit">
+                    <input type="submit" value="submit" id="submit" onclick="showlist()">
                 </center>
             </form>
         </div>
@@ -154,84 +154,55 @@
                 <h1 class="av_head">Available Auto</h1>
             </center>
 
-            <div id="beforeclick">
-                <h1>Please submit trip infromation!!!</h1>
-            </div>
 
-            <div class="list_con" id="lc">
-                <div class="list-itm0">
-                    <div class="list_dname">
-                        <p>Name : <span>Driver name</span></p>
-                    </div>
-                    <div class="list_rating">
-                        <p>rating : <span>4.9/5</span></p>
-                    </div>
-                    <div class="list_price">
-                        <p>price : <span>price</span></p>
-                    </div>
-                    <div class="list_done">
-                        <input type="button" value="done">
-                    </div>
-                </div>
 
-                <div class="list-itm1">
-                    <div class="list_dname">
-                        <p>Name : <span>Driver name</span></p>
+            <% for(let i=0;i<av_auto.length;i++){ %>
+                <% if(!av_auto[i]){ %>
+                    <div id="beforeclick">
+                        <h1>Please submit trip infromation!!!</h1>
                     </div>
-                    <div class="list_rating">
-                        <p>rating : <span>4.9/5</span></p>
-                    </div>
-                    <div class="list_price">
-                        <p>price : <span>price</span></p>
-                    </div>
-                    <div class="list_done">
-                        <input type="button" value="done">
-                    </div>
-                </div>
-
-                <div class="list-itm0">
-                    <div class="list_dname">
-                        <p>Name : <span>Driver name</span></p>
-                    </div>
-                    <div class="list_rating">
-                        <p>rating : <span>4.9/5</span></p>
-                    </div>
-                    <div class="list_price">
-                        <p>price : <span>price</span></p>
-                    </div>
-                    <div class="list_done">
-                        <input type="button" value="done">
-                    </div>
-                </div>
-                <div class="list-itm1">
-                    <div class="list_dname">
-                        <p>Name : <span>Driver name</span></p>
-                    </div>
-                    <div class="list_rating">
-                        <p>rating : <span>4.9/5</span></p>
-                    </div>
-                    <div class="list_price">
-                        <p>price : <span>price</span></p>
-                    </div>
-                    <div class="list_done">
-                        <input type="button" value="done">
-                    </div>
-                </div>
-                <div class="list-itm0">
-                    <div class="list_dname">
-                        <p>Name : <span>Driver name</span></p>
-                    </div>
-                    <div class="list_rating">
-                        <p>rating : <span>4.9/5</span></p>
-                    </div>
-                    <div class="list_price">
-                        <p>price : <span>price</span></p>
-                    </div>
-                    <div class="list_done">
-                        <input type="button" value="done">
-                    </div>
-                </div>
-            </div>
+                    <%}else if(i%2==0){ %>
+                        <div class="list_con" id="lc">
+                            <div class="list-itm0">
+                                <div class="list_dname">
+                                    <p>Name : <span>
+                                            <%=av_auto[i].sen_name%>
+                                        </span></p>
+                                </div>
+                                <div class="list_rating">
+                                    <p>rating : <span>4.9/5</span></p>
+                                </div>
+                                <div class="list_price">
+                                    <p>price : <span>
+                                            <%=av_auto[i].price%>
+                                        </span></p>
+                                </div>
+                                <div class="list_done">
+                                    <input type="button" value="done">
+                                </div>
+                            </div>
+                            <% }else{ %>
+                                <div class="list-itm1">
+                                    <div class="list_dname">
+                                        <p>Name : <span>
+                                                <%=av_auto[i].sen_name%>
+                                            </span></p>
+                                    </div>
+                                    <div class="list_rating">
+                                        <p>rating : <span>4.9/5</span></p>
+                                    </div>
+                                    <div class="list_price">
+                                        <p>price : <span>
+                                                <%=av_auto[i].price%>
+                                            </span></p>
+                                    </div>
+                                    <div class="list_done">
+                                        <input type="button" value="done">
+                                    </div>
+                                </div>
+                                <% } %>
+                                    <% } %>
+                        </div>
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
