@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>driver_home</title>
+    <!-- <meta http-equiv="refresh" content="4"> -->
+    <!-- <script src="/js/driverclient.js"></script> -->
     <link id="u-theme-google-font" rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
     <link rel="stylesheet" href="css/driver_home.css">
@@ -65,236 +67,222 @@
                 <h1 class="av_head">Available User</h1>
             </center>
             <div class="list_con">
-                <div class="list-itm0">
-                    <div class="tripd">
-                        <div class="trip-itm">
-                            <p>Paek-up : <span>Charusat gate 1</span></p>
-                        </div>
-                        <div class="trip-itm">
-                            <p>Drop : <span>Anand</span></p>
-                        </div>
-                        <div class="trip-itm">
-                            <p>Time : <span>Today</span> <span>12:00 PM</span> (After 00h:00m)</p>
-                        </div>
-                        <form action="" class="p-form-con">
-                            <div class="trip-itm Passengers psg_pri-fb">
-                                <p>Passengers : <span>5</span></p>
-                            </div>
-                            <div class="trip-itm Price psg_pri-fb">
-                                <p>Price : <span><input type="number" name="price" id="price" required></span> </p>
-                            </div>
-                            <div class="trip-itm">
-                                <input type="submit" value="Request" id="submit" class="req-btn">
-                            </div>
-                        </form>
-                    </div>
-                </div>
-
-                <div class="list-itm1">
-                    <div class="tripd">
-                        <div class="trip-itm">
-                            <p>Paek-up : <span>Charusat gate 1</span></p>
-                        </div>
-                        <div class="trip-itm">
-                            <p>Drop : <span>Anand</span></p>
-                        </div>
-                        <div class="trip-itm">
-                            <p>Time : <span>Today</span> <span>12:00 PM</span> (After 00h:00m)</p>
-                        </div>
-                        <form action="" class="p-form-con">
-                            <div class="trip-itm Passengers psg_pri-fb">
-                                <p>Passengers : <span>5</span></p>
-                            </div>
-                            <div class="trip-itm Price psg_pri-fb">
-                                <p>Price : <span><input type="number" name="price" id="price" required></span> </p>
-                            </div>
-                            <div class="trip-itm">
-                                <input type="submit" value="Request" id="submit" class="req-btn" ">
-                            </div>
-                        </form>
-                    </div>
-                </div>
-
-                <div class=" list-itm0">
-                                <div class="tripd">
-                                    <div class="trip-itm">
-                                        <p>Paek-up : <span>Charusat gate 1</span></p>
-                                    </div>
-                                    <div class="trip-itm">
-                                        <p>Drop : <span>Anand</span></p>
-                                    </div>
-                                    <div class="trip-itm">
-                                        <p>Time : <span>Today</span> <span>12:00 PM</span> (After 00h:00m)</p>
-                                    </div>
-                                    <form action="" class="p-form-con">
-                                        <div class="trip-itm Passengers psg_pri-fb">
-                                            <p>Passengers : <span>5</span></p>
-                                        </div>
-                                        <div class="trip-itm Price psg_pri-fb">
-                                            <p>Price : <span><input type="number" name="price" id="price"
-                                                        required></span> </p>
-                                        </div>
-                                        <div class="trip-itm">
-                                            <input type="submit" value="Request" id="submit" class="req-btn">
-                                        </div>
-                                    </form>
+                <% for(let i=0;i<av_users.length;i++){ %>
+                    <% if(i%2==0){ %>
+                        <div class="list-itm0">
+                            <div class="tripd">
+                                <div class="trip-itm">
+                                    <p>Paek-up : <span>
+                                            <%=av_users[i].from%>
+                                        </span></p>
                                 </div>
+                                <div class="trip-itm">
+                                    <p>Drop : <span>
+                                            <%=av_users[i].to%>
+                                        </span></p>
+                                </div>
+                                <div class="trip-itm">
+                                    <p>Time : <span>
+                                            <%=av_users[i].date%>
+                                        </span> <span>
+                                            <%=av_users[i].time%>
+                                        </span> (After 00h:00m)</p>
+                                </div>
+                                <form action="" class="p-form-con">
+                                    <div class="trip-itm Passengers psg_pri-fb">
+                                        <p>Passengers : <span>
+                                                <%=av_users[i].passengers%>
+                                            </span></p>
+                                    </div>
+                                    <div class="trip-itm Price psg_pri-fb">
+                                        <p>Price : <span><input type="number" name="price" id="price" required></span>
+                                        </p>
+                                    </div>
+                                    <div class="trip-itm">
+                                        <input type="submit" value="Request" id="submit" class="req-btn">
+                                    </div>
+                                </form>
                             </div>
+                        </div>
+                        <% }else{ %>
                             <div class="list-itm1">
                                 <div class="tripd">
                                     <div class="trip-itm">
-                                        <p>Paek-up : <span>Charusat gate 1</span></p>
+                                        <p>Paek-up : <span>
+                                                <%=av_users[i].from%>
+                                            </span></p>
                                     </div>
                                     <div class="trip-itm">
-                                        <p>Drop : <span>Anand</span></p>
+                                        <p>Drop : <span>
+                                                <%=av_users[i].to%>
+                                            </span></p>
                                     </div>
                                     <div class="trip-itm">
-                                        <p>Time : <span>Today</span> <span>12:00 PM</span> (After 00h:00m)</p>
+                                        <p>Time : <span>
+                                                <%=av_users[i].date%>
+                                            </span> <span>
+                                                <%=av_users[i].time%>
+                                            </span> (After 00h:00m)</p>
                                     </div>
                                     <form action="" class="p-form-con">
                                         <div class="trip-itm Passengers psg_pri-fb">
-                                            <p>Passengers : <span>5</span></p>
+                                            <p>Passengers : <span>
+                                                    <%=av_users[i].passengers%>
+                                                </span></p>
                                         </div>
                                         <div class="trip-itm Price psg_pri-fb">
                                             <p>Price : <span><input type="number" name="price" id="price"
-                                                        required></span> </p>
+                                                        required></span>
+                                            </p>
                                         </div>
                                         <div class="trip-itm">
-                                            <input type="submit" value="Request" id="submit" class="req-btn">
-                                        </div>
-                                    </form>
-                                </div>
+                                            <input type="submit" value="Request" id="submit" class="req-btn" ">
                             </div>
+                        </form>
                     </div>
                 </div>
+                <% } %>
 
-                <div class="cf_con">
-                    <center>
-                        <h1 class="cf_head">confirm User</h1>
-                    </center>
-                    <div class="cf-list_con">
-                        <div class="cf-list-itm0">
-                            <div class="tripd">
-                                <div class="trip-itm">
-                                    <p>Name : <span>Name of user</span></p>
-                                </div>
-                                <div class="trip-itm">
-                                    <p>Paek-up : <span>Charusat gate 1</span></p>
-                                </div>
-                                <div class="trip-itm">
-                                    <p>Drop : <span>Anand</span></p>
-                                </div>
-                                <div class="trip-itm time">
-                                    <p>Time : <span>Today</span> <span>12:00 PM</span> (After 00h:00m)</p>
-                                </div>
-                                <div class="inlinecon">
-                                    <div class="trip-itm Passengers psg_pri-fb">
-                                        <p>Passengers : <span>5</span></p>
-                                    </div>
-                                    <div class="trip-itm Price psg_pri-fb">
-                                        <p>Price : <span>150 ruppes</span> </p>
-                                    </div>
-                                </div>
-                                <div class="trip-itm call">
-                                    <p>CALL : <span>9876543210</span></p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="cf-list-itm1">
-                            <div class="tripd">
-                                <div class="trip-itm">
-                                    <p>Name : <span>Name of user</span></p>
-                                </div>
-                                <div class="trip-itm">
-                                    <p>Paek-up : <span>Charusat gate 1</span></p>
-                                </div>
-                                <div class="trip-itm">
-                                    <p>Drop : <span>Anand</span></p>
-                                </div>
-                                <div class="trip-itm time">
-                                    <p>Time : <span>Today</span> <span>12:00 PM</span> (After 00h:00m)</p>
-                                </div>
-                                <div class="inlinecon">
-                                    <div class="trip-itm Passengers psg_pri-fb">
-                                        <p>Passengers : <span>5</span></p>
-                                    </div>
-                                    <div class="trip-itm Price psg_pri-fb">
-                                        <p>Price : <span>150 ruppes</span> </p>
-                                    </div>
-                                </div>
-                                <div class="trip-itm call">
-                                    <p>CALL : <span>9876543210</span></p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="cf-list-itm0">
-                            <div class="tripd">
-                                <div class="trip-itm">
-                                    <p>Name : <span>Name of user</span></p>
-                                </div>
-                                <div class="trip-itm">
-                                    <p>Paek-up : <span>Charusat gate 1</span></p>
-                                </div>
-                                <div class="trip-itm">
-                                    <p>Drop : <span>Anand</span></p>
-                                </div>
-                                <div class="trip-itm time">
-                                    <p>Time : <span>Today</span> <span>12:00 PM</span> (After 00h:00m)</p>
-                                </div>
-                                <div class="inlinecon">
-                                    <div class="trip-itm Passengers psg_pri-fb">
-                                        <p>Passengers : <span>5</span></p>
-                                    </div>
-                                    <div class="trip-itm Price psg_pri-fb">
-                                        <p>Price : <span>150 ruppes</span> </p>
-                                    </div>
-                                </div>
-                                <div class="trip-itm call">
-                                    <p>CALL : <span>9876543210</span></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="cf-list-itm1">
-                            <div class="tripd">
-                                <div class="trip-itm">
-                                    <p>Name : <span>Name of user</span></p>
-                                </div>
-                                <div class="trip-itm">
-                                    <p>Paek-up : <span>Charusat gate 1</span></p>
-                                </div>
-                                <div class="trip-itm">
-                                    <p>Drop : <span>Anand</span></p>
-                                </div>
-                                <div class="trip-itm time">
-                                    <p>Time : <span>Today</span> <span>12:00 PM</span> (After 00h:00m)</p>
-                                </div>
-                                <div class="inlinecon">
-                                    <div class="trip-itm Passengers psg_pri-fb">
-                                        <p>Passengers : <span>5</span></p>
-                                    </div>
-                                    <div class="trip-itm Price psg_pri-fb">
-                                        <p>Price : <span>150 ruppes</span> </p>
-                                    </div>
-                                </div>
-                                <div class="trip-itm call">
-                                    <p>CALL : <span>9876543210</span></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <% } %>
             </div>
-            <script>
+        </div>
+                <div class=" cf_con">
 
-                //loader js
-                function hideLoader() {
-                    let l_b = document.getElementById('loader_bg');
-                    l_b.style.display = 'none';
-                }
-                setTimeout(hideLoader, 5 * 100);
-            </script>
+                                            <center>
+                                                <h1 class="cf_head">confirm User</h1>
+                                            </center>
+                                            <div class="cf-list_con">
+                                                <div class="cf-list-itm0">
+                                                    <div class="tripd">
+                                                        <div class="trip-itm">
+                                                            <p>Name : <span>Name of user</span></p>
+                                                        </div>
+                                                        <div class="trip-itm">
+                                                            <p>Paek-up : <span>Charusat gate 1</span></p>
+                                                        </div>
+                                                        <div class="trip-itm">
+                                                            <p>Drop : <span>Anand</span></p>
+                                                        </div>
+                                                        <div class="trip-itm time">
+                                                            <p>Time : <span>Today</span> <span>12:00 PM</span> (After
+                                                                00h:00m)
+                                                            </p>
+                                                        </div>
+                                                        <div class="inlinecon">
+                                                            <div class="trip-itm Passengers psg_pri-fb">
+                                                                <p>Passengers : <span>5</span></p>
+                                                            </div>
+                                                            <div class="trip-itm Price psg_pri-fb">
+                                                                <p>Price : <span>150 ruppes</span> </p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="trip-itm call">
+                                                            <p>CALL : <span>9876543210</span></p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="cf-list-itm1">
+                                                    <div class="tripd">
+                                                        <div class="trip-itm">
+                                                            <p>Name : <span>Name of user</span></p>
+                                                        </div>
+                                                        <div class="trip-itm">
+                                                            <p>Paek-up : <span>Charusat gate 1</span></p>
+                                                        </div>
+                                                        <div class="trip-itm">
+                                                            <p>Drop : <span>Anand</span></p>
+                                                        </div>
+                                                        <div class="trip-itm time">
+                                                            <p>Time : <span>Today</span> <span>12:00 PM</span> (After
+                                                                00h:00m)
+                                                            </p>
+                                                        </div>
+                                                        <div class="inlinecon">
+                                                            <div class="trip-itm Passengers psg_pri-fb">
+                                                                <p>Passengers : <span>5</span></p>
+                                                            </div>
+                                                            <div class="trip-itm Price psg_pri-fb">
+                                                                <p>Price : <span>150 ruppes</span> </p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="trip-itm call">
+                                                            <p>CALL : <span>9876543210</span></p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="cf-list-itm0">
+                                                    <div class="tripd">
+                                                        <div class="trip-itm">
+                                                            <p>Name : <span>Name of user</span></p>
+                                                        </div>
+                                                        <div class="trip-itm">
+                                                            <p>Paek-up : <span>Charusat gate 1</span></p>
+                                                        </div>
+                                                        <div class="trip-itm">
+                                                            <p>Drop : <span>Anand</span></p>
+                                                        </div>
+                                                        <div class="trip-itm time">
+                                                            <p>Time : <span>Today</span> <span>12:00 PM</span> (After
+                                                                00h:00m)
+                                                            </p>
+                                                        </div>
+                                                        <div class="inlinecon">
+                                                            <div class="trip-itm Passengers psg_pri-fb">
+                                                                <p>Passengers : <span>5</span></p>
+                                                            </div>
+                                                            <div class="trip-itm Price psg_pri-fb">
+                                                                <p>Price : <span>150 ruppes</span> </p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="trip-itm call">
+                                                            <p>CALL : <span>9876543210</span></p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="cf-list-itm1">
+                                                    <div class="tripd">
+                                                        <div class="trip-itm">
+                                                            <p>Name : <span>Name of user</span></p>
+                                                        </div>
+                                                        <div class="trip-itm">
+                                                            <p>Paek-up : <span>Charusat gate 1</span></p>
+                                                        </div>
+                                                        <div class="trip-itm">
+                                                            <p>Drop : <span>Anand</span></p>
+                                                        </div>
+                                                        <div class="trip-itm time">
+                                                            <p>Time : <span>Today</span> <span>12:00 PM</span> (After
+                                                                00h:00m)
+                                                            </p>
+                                                        </div>
+                                                        <div class="inlinecon">
+                                                            <div class="trip-itm Passengers psg_pri-fb">
+                                                                <p>Passengers : <span>5</span></p>
+                                                            </div>
+                                                            <div class="trip-itm Price psg_pri-fb">
+                                                                <p>Price : <span>150 ruppes</span> </p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="trip-itm call">
+                                                            <p>CALL : <span>9876543210</span></p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                </div>
+                            </div>
+                            <script>
+
+                                //loader js
+                                function hideLoader() {
+                                    let l_b = document.getElementById('loader_bg');
+                                    l_b.style.display = 'none';
+                                }
+                                setTimeout(hideLoader, 5 * 100);
+                            </script>
 </body>
 
 </html>

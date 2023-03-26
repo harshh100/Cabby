@@ -71,7 +71,7 @@
             <center>
                 <h1 class="tp_head">Trip Map</h1>
             </center>
-            <form action="">
+            <form action="/student_req" method="post" onsubmit="showlist()">
                 <p class=" form-itm"> <span class="f-box"> <img src="../images/home-solid.gif" class="icn" alt=""> From
                         <span>: </span>
                     </span>
@@ -242,18 +242,18 @@
         }
         setTimeout(hideLoader, 5 * 100);
 
-        // //list show js
-        // function showlist() {
-        //     alert("sl call")
-        //     console.log("sl call")
-        //     let l_c = document.getElementById('lc');
-        //     let before = document.getElementById('beforeclick');
-        //     l_c.style.display = 'block';
-        //     before.style.display = 'none';
-        //     // l_itm0.style.display = 'flex'
-        //     // l_itm1.style.display = 'flex'
+        //list show js
+        function showlist() {
+            // alert("sl call")
+            console.log("sl call")
+            let l_c = document.getElementById('lc');
+            let before = document.getElementById('beforeclick');
+            l_c.style.display = 'block';
+            before.style.display = 'none';
+            // l_itm0.style.display = 'flex'
+            // l_itm1.style.display = 'flex'
 
-        // }
+        }
 
 
 

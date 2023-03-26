@@ -70,6 +70,41 @@ const trip_list_Schema = new mongoose.Schema({
   },
 });
 
+const req_Avi_userlist_Schema = new mongoose.Schema({
+  email: {
+    type: String,
+    require: true,
+  },
+  role: {
+    type: String,
+    require: true,
+  },
+  name: {
+    type: String,
+    require: true,
+  },
+  from: {
+    type: String,
+    require: true,
+  },
+  to: {
+    type: String,
+    require: true,
+  },
+  time: {
+    type: String,
+    require: true,
+  },
+  date: {
+    type: String,
+    require: true,
+  },
+  passengers: {
+    type: Number,
+    require: true,
+  },
+});
+
 const userSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -99,44 +134,21 @@ const userSchema = new mongoose.Schema({
     require: true,
   },
   Adv_B_list: [trip_list_Schema],
-  Availebel_list: [trip_list_Schema],
-});
-
-const user_trip_req_Schema = new mongoose.Schema({
-  name: {
-    type: String,
-    require: true,
-  },
-  from: {
-    type: String,
-    require: true,
-  },
-  to: {
-    type: String,
-    require: true,
-  },
-  time: {
-    type: String,
-    require: true,
-  },
-  date: {
-    type: String,
-    require: true,
-  },
-  passengers: {
-    type: Number,
-    require: true,
-  },
+  Confirm_avi_list: [trip_list_Schema],
+  req_avi_list: [req_Avi_userlist_Schema],
 });
 
 // define a User model based on the user schema
 const User = mongoose.model("User", userSchema);
-
+const Avilableuser_list = mongoose.model(
+  "Avilableuser",
+  req_Avi_userlist_Schema
+);
 // configure passport to use LocalStrategy for authentication
 passport.use(
   new LocalStrategy({ usernameField: "email" }, (email, password, done) => {
     User.findOne({ email }, (err, user) => {
-      console.log(user);
+      // console.log(user);
       if (err) return done(err);
       if (!user) {
         return done(null, false, { message: "Invalid email or password" });
@@ -226,8 +238,98 @@ app.get("/", (req, res) => {
   const role = req.user.role;
   const email = req.user.email;
   const filename = role === "Auto-driver" ? "driver_home" : "Student_home";
-  res.render(filename, { username: email });
+  if (filename === "driver_home") {
+    const av_users_list = Avilableuser_list.find(
+      {},
+      function (err, av_users_list) {
+        // console.log(av_users_list);
+        res.render(filename, { username: email, av_users: av_users_list });
+      }
+    );
+  } else if (filename === "Student_home")
+    res.render(filename, { username: email });
 });
+
+app.post("/student_req", function (req, res) {
+  if (req.user && req.body) {
+    // console.log(req.body);
+    // console.log(req.user.email);
+    // console.log(req.user.role);
+    // console.log(req.user.name);
+    // console.log(req.body.from);
+    // console.log(req.body.to);
+    // console.log(req.body.time);
+    // console.log(req.body.date);
+    // console.log(req.body.passengers);
+    const std_req = new Avilableuser_list({
+      email: req.user.email,
+      role: req.user.role,
+      name: req.user.name,
+      from: req.body.from,
+      to: req.body.to,
+      time: req.body.time,
+      date: req.body.date,
+      passengers: req.body.passengers,
+    });
+    console.log(std_req);
+    std_req.save((err) => {
+      if (err) {
+        console.log(err);
+        req.flash("error", "Error for submiting request");
+        return res.redirect("/");
+      }
+      // console.log(user);
+      res.redirect("/");
+    });
+    // try {
+    //   const drivers = User.find(
+    //     { role: "Auto-driver" },
+    //     function (err, drivers) {
+    //       if (err) throw err;
+    //       console.log(drivers);
+    //       drivers.forEach(function (finddriver) {
+    //         try {
+    //           User.findByIdAndUpdate(
+    //             finddriver._id,
+    //             { $push: { req_avi_list: std_req } },
+    //             { new: true }
+    //           );
+    //           res.redirect();
+    //           console.log("req data added in driver page");
+    //         } catch (err) {
+    //           console.error(err);
+    //         }
+    //       });
+    //     }
+    //   );
+    // } catch (err) {
+    //   console.error(err);
+    // }
+  } else {
+    res.send("data can't send try again");
+  }
+
+  // console.log(std_req);
+  // User.updateMany(
+  //   { role: "Auto-driver" },
+  //   { $set: { myfield: "myvalue" } },
+  //   function (err, result) {
+  //     if (err) throw err;
+  //     console.log(result.modifiedCount + " documents updated");
+  //   }
+  // );
+});
+
+// app.get("/data", (req, res) => {
+//   // Query the database using Mongoose and return the data in JSON format
+//   MyModel.find({}, (err, data) => {
+//     if (err) {
+//       res.status(500).send(err);
+//     } else {
+//       res.json(data);
+//     }
+//   });
+// });
 
 // start the server
 app.listen(3000, () => {
