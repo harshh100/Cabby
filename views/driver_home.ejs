@@ -88,7 +88,7 @@
                                             <%=av_users[i].time%>
                                         </span> (After 00h:00m)</p>
                                 </div>
-                                <form action="" class="p-form-con">
+                                <form action="/driver_req" method="post" class="p-form-con">
                                     <div class="trip-itm Passengers psg_pri-fb">
                                         <p>Passengers : <span>
                                                 <%=av_users[i].passengers%>
@@ -97,6 +97,10 @@
                                     <div class="trip-itm Price psg_pri-fb">
                                         <p>Price : <span><input type="number" name="price" id="price" required></span>
                                         </p>
+                                        <input type="hidden" name="d_req_with_price"
+                                            value="<%= JSON.stringify(av_users[i]) %>" />
+                                        <input type="hidden" name="driver_name" value="<%=username%>" />
+
                                     </div>
                                     <div class="trip-itm">
                                         <input type="submit" value="Request" id="submit" class="req-btn">
@@ -124,7 +128,7 @@
                                                 <%=av_users[i].time%>
                                             </span> (After 00h:00m)</p>
                                     </div>
-                                    <form action="" class="p-form-con">
+                                    <form action="/driver_req" method="post" class="p-form-con">
                                         <div class="trip-itm Passengers psg_pri-fb">
                                             <p>Passengers : <span>
                                                     <%=av_users[i].passengers%>
@@ -134,6 +138,10 @@
                                             <p>Price : <span><input type="number" name="price" id="price"
                                                         required></span>
                                             </p>
+                                            <input type="hidden" name="d_req_with_price"
+                                                value=<%=JSON.stringify(av_users[i]) %>/>
+                                            <input type="hidden" name="driver_name" value="<%=username%>" />
+
                                         </div>
                                         <div class="trip-itm">
                                             <input type="submit" value="Request" id="submit" class="req-btn" ">

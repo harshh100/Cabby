@@ -144,6 +144,7 @@ const Avilableuser_list = mongoose.model(
   "Avilableuser",
   req_Avi_userlist_Schema
 );
+const AvilableAuto_list = mongoose.model("AvilableAuto", trip_list_Schema);
 // configure passport to use LocalStrategy for authentication
 passport.use(
   new LocalStrategy({ usernameField: "email" }, (email, password, done) => {
@@ -281,55 +282,21 @@ app.post("/student_req", function (req, res) {
       // console.log(user);
       res.redirect("/");
     });
-    // try {
-    //   const drivers = User.find(
-    //     { role: "Auto-driver" },
-    //     function (err, drivers) {
-    //       if (err) throw err;
-    //       console.log(drivers);
-    //       drivers.forEach(function (finddriver) {
-    //         try {
-    //           User.findByIdAndUpdate(
-    //             finddriver._id,
-    //             { $push: { req_avi_list: std_req } },
-    //             { new: true }
-    //           );
-    //           res.redirect();
-    //           console.log("req data added in driver page");
-    //         } catch (err) {
-    //           console.error(err);
-    //         }
-    //       });
-    //     }
-    //   );
-    // } catch (err) {
-    //   console.error(err);
-    // }
   } else {
     res.send("data can't send try again");
   }
-
-  // console.log(std_req);
-  // User.updateMany(
-  //   { role: "Auto-driver" },
-  //   { $set: { myfield: "myvalue" } },
-  //   function (err, result) {
-  //     if (err) throw err;
-  //     console.log(result.modifiedCount + " documents updated");
-  //   }
-  // );
 });
 
-// app.get("/data", (req, res) => {
-//   // Query the database using Mongoose and return the data in JSON format
-//   MyModel.find({}, (err, data) => {
-//     if (err) {
-//       res.status(500).send(err);
-//     } else {
-//       res.json(data);
-//     }
-//   });
-// });
+app.post("/driver_req", function (req, res) {
+  const { price, d_req_with_price } = req.body;
+  const avAuto = JSON.parse(d_req_with_price);
+
+  console.log(req.body);
+  console.log(avAuto.name);
+  console.log(avAuto.role);
+  console.log(avAuto.to);
+  console.log(price);
+});
 
 // start the server
 app.listen(3000, () => {

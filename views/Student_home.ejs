@@ -71,7 +71,8 @@
             <center>
                 <h1 class="tp_head">Trip Map</h1>
             </center>
-            <form action="/student_req" method="post" onsubmit="showlist()">
+            <form action="/student_req" method="post" id="user_req">
+                <!-- action="/student_req" method="post" -->
                 <p class=" form-itm"> <span class="f-box"> <img src="../images/home-solid.gif" class="icn" alt=""> From
                         <span>: </span>
                     </span>
@@ -233,8 +234,8 @@
             </div>
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-
         //loader js
         function hideLoader() {
             let l_b = document.getElementById('loader_bg');
@@ -252,10 +253,31 @@
             before.style.display = 'none';
             // l_itm0.style.display = 'flex'
             // l_itm1.style.display = 'flex'
-
         }
 
+        const form = document.getElementById('user_req');
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            showlist();
+            // const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const from = document.getElementById('from').value;
+            const to = document.getElementById('to').value;
+            const time = document.getElementById('time').value;
+            const date = document.getElementById('date').value;
+            const passengers = document.getElementById('passengers').value;
 
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', '/student_req', true);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.onreadystatechange = function () {
+                if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+                    console.log('Form submitted!');
+                }
+            }
+            const data = JSON.stringify({ name: name, email: email, from: from, to: to, time: time, date: date, passengers: passengers });
+            xhr.send(data);
+        });
 
     </script>
 </body>
