@@ -144,7 +144,7 @@
                     </select>
                 </p>
                 <center>
-                    <input type="submit" value="submit" id="submit" onclick="showlist()">
+                    <input type="submit" value="submit" id="submit">
                 </center>
             </form>
         </div>
@@ -159,7 +159,7 @@
             <% for(let i=0;i<av_auto.length;i++){ %>
                 <% if(!av_auto[i]){ %>
                     <div id="beforeclick">
-                        <h1>Please submit trip infromation!!!</h1>
+                        <h1>empty!!</h1>
                     </div>
                     <%}else if(i%2==0){ %>
                         <div class="list_con" id="lc">
@@ -201,13 +201,13 @@
 
                                         </div>
                                     </div>
-                                    <form action="/driver_req" method="post" class="p-form-con"></form>
-                                    <div class="trip-itm">
-                                        <input type="hidden" name="d_req_with_price"
-                                            value="<%= JSON.stringify(av_auto[i]) %>" />
-                                        <input type="hidden" name="driver_name" value="<%=username%>" />
-                                        <input type="submit" value="Confirm" id="submit" class="req-btn">
-                                    </div>
+                                    <form action="/con_drv" method="post" class="p-form-con">
+                                        <div class="trip-itm">
+                                            <input type="hidden" name="d_req_with_price"
+                                                value="<%= JSON.stringify(av_auto[i]) %>" />
+                                            <input type="hidden" name="student_name" value="<%=username%>" />
+                                            <input type="submit" value="Confirm" id="submit" class="con-btn">
+                                        </div>
                                     </form>
                                 </div>
                             </div>
@@ -250,13 +250,13 @@
 
                                             </div>
                                         </div>
-                                        <form action="/driver_req" method="post" class="p-form-con"></form>
-                                        <div class="trip-itm">
-                                            <input type="hidden" name="d_req_with_price"
-                                                value="<%= JSON.stringify(av_auto[i]) %>" />
-                                            <input type="hidden" name="driver_name" value="<%=username%>" />
-                                            <input type="submit" value="Confirm" id="submit" class="req-btn">
-                                        </div>
+                                        <form action="/con_drv" method="post" class="p-form-con">
+                                            <div class="trip-itm">
+                                                <input type="hidden" name="d_req_with_price"
+                                                    value="<%= JSON.stringify(av_auto[i]) %>" />
+                                                <input type="hidden" name="student_name" value="<%=username%>" />
+                                                <input type="submit" value="Confirm" id="submit" class="req-btn">
+                                            </div>
                                         </form>
                                     </div>
                                 </div>
@@ -286,29 +286,29 @@
         //     // l_itm1.style.display = 'flex'
         // }
 
-        const form = document.getElementById('user_req');
-        form.addEventListener('submit', function (e) {
-            e.preventDefault();
-            // showlist();
-            // const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const from = document.getElementById('from').value;
-            const to = document.getElementById('to').value;
-            const time = document.getElementById('time').value;
-            const date = document.getElementById('date').value;
-            const passengers = document.getElementById('passengers').value;
+        // const form = document.getElementById('user_req');
+        // form.addEventListener('submit', function (e) {
+        //     e.preventDefault();
+        //     // showlist();
+        //     // const name = document.getElementById('name').value;
+        //     const email = document.getElementById('email').value;
+        //     const from = document.getElementById('from').value;
+        //     const to = document.getElementById('to').value;
+        //     const time = document.getElementById('time').value;
+        //     const date = document.getElementById('date').value;
+        //     const passengers = document.getElementById('passengers').value;
 
-            const xhr = new XMLHttpRequest();
-            xhr.open('POST', '/student_req', true);
-            xhr.setRequestHeader('Content-Type', 'application/json');
-            xhr.onreadystatechange = function () {
-                if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
-                    console.log('Form submitted!');
-                }
-            }
-            const data = JSON.stringify({ name: name, email: email, from: from, to: to, time: time, date: date, passengers: passengers });
-            xhr.send(data);
-        });
+        //     const xhr = new XMLHttpRequest();
+        //     xhr.open('POST', '/student_req', true);
+        //     xhr.setRequestHeader('Content-Type', 'application/json');
+        //     xhr.onreadystatechange = function () {
+        //         if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+        //             console.log('Form submitted!');
+        //         }
+        //     }
+        //     const data = JSON.stringify({ name: name, email: email, from: from, to: to, time: time, date: date, passengers: passengers });
+        //     xhr.send(data);
+        // });
 
     </script>
 </body>

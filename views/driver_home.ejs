@@ -139,9 +139,8 @@
                                                         required></span>
                                             </p>
                                             <input type="hidden" name="d_req_with_price"
-                                                value=<%=JSON.stringify(av_users[i]) %>/>
+                                                value="<%= JSON.stringify(av_users[i]) %>" />
                                             <input type="hidden" name="driver_name" value="<%=username%>" />
-
                                         </div>
                                         <div class="trip-itm">
                                             <input type="submit" value="Request" id="submit" class="req-btn" ">

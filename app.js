@@ -244,13 +244,12 @@ app.get("/", (req, res) => {
   const email = req.user.email;
   const filename = role === "Auto-driver" ? "driver_home" : "Student_home";
   if (filename === "driver_home") {
-    const av_users_list = Avilableuser_list.find(
-      {},
-      function (err, av_users_list) {
-        // console.log(av_users_list);
-        res.render(filename, { username: email, av_users: av_users_list });
-      }
-    );
+    User.findOne({ email: email }, function (err, founduser) {
+      res.render(filename, {
+        username: email,
+        av_users: founduser.req_avi_list,
+      });
+    });
   } else if (filename === "Student_home")
     User.findOne({ email: email }, function (err, founduser) {
       res.render(filename, {
@@ -262,7 +261,7 @@ app.get("/", (req, res) => {
 
 app.post("/student_req", function (req, res) {
   if (req.user && req.body) {
-    // console.log(req.body);
+    console.log(req.body);
     // console.log(req.user.email);
     // console.log(req.user.role);
     // console.log(req.user.name);
@@ -281,56 +280,174 @@ app.post("/student_req", function (req, res) {
       date: req.body.date,
       passengers: req.body.passengers,
     });
-    console.log(std_req);
-    std_req.save((err) => {
-      if (err) {
-        console.log(err);
-        req.flash("error", "Error for submiting request");
-        return res.redirect("/");
+
+    User.updateMany(
+      { role: "Auto-driver" },
+      {
+        $push: {
+          req_avi_list: {
+            email: req.user.email,
+            role: "Auto-driver",
+            name: req.user.email,
+            from: req.body.from,
+            to: req.body.to,
+            time: req.body.time,
+            date: req.body.date,
+            passengers: req.body.passengers,
+          },
+        },
+      },
+      (err, result) => {
+        if (err) {
+          console.log(err);
+        } else {
+          // console.log(result);.
+          res.redirect("/");
+        }
       }
-      // console.log(user);
-      res.redirect("/");
-    });
-  } else {
-    res.send("data can't send try again");
+    );
   }
 });
 
-app.post("/driver_req", function (req, res) {
-  console.log(req.body);
-  const { price, d_req_with_price, driver_name } = req.body;
-  const avAuto = JSON.parse(d_req_with_price);
-  console.log(avAuto.email);
-  console.log(driver_name);
-  console.log(avAuto.to);
-  console.log(avAuto.from);
-  const d_req = new AvilableAuto_list({
-    rec_name: avAuto.email,
-    role: avAuto.role,
-    sen_name: driver_name,
-    from: avAuto.from,
-    to: avAuto.to,
-    time: avAuto.time,
-    date: avAuto.date,
-    passengers: avAuto.passengers,
-    price: price,
-  });
+app.post("/con_drv", function (req, res) {
+  if (req.user && req.body) {
+    console.log("/con_drv");
+    // console.log(req.body.d_req_with_price);
+    const con_b = req.body.d_req_with_price;
+    const student_name = req.body.student_name;
+    console.log(con_b);
+    console.log(student_name);
+    const Con_b = JSON.parse(con_b);
+    console.log(Con_b);
+    //new code
+    User.findOneAndUpdate(
+      { email: Con_b.rec_name }, // specify the user's email
+      {
+        $push: {
+          Adv_B_list: {
+            sen_name: Con_b.sen_name,
+            rec_name: Con_b.rec_name,
+            role: "Student",
+            from: Con_b.from,
+            to: Con_b.to,
+            time: Con_b.time,
+            date: Con_b.date,
+            passengers: Con_b.passengers,
+            price: Con_b.price,
+          },
+        },
+        $pull: {
+          Confirm_avi_list: {
+            from: Con_b.from,
+            to: Con_b.to,
+            time: Con_b.time,
+            date: Con_b.date,
+            passengers: Con_b.passengers,
+          },
+        },
+      },
+      { new: true },
+      (err, updatedUser) => {
+        if (err) {
+          console.error(err);
+        } else {
+          console.log(updatedUser);
+        }
+      }
+    );
 
-  User.findOne({ email: avAuto.email }, function (err, founduser) {
-    if (err) {
-      console.log(err);
-    } else {
-      founduser.Confirm_avi_list.push(d_req);
-      founduser.save();
-      res.redirect("/");
-    }
-  });
+    User.updateMany(
+      { role: "Auto-driver" },
+      {
+        $pull: {
+          req_avi_list: {
+            email: Con_b.rec_name,
+            from: Con_b.from,
+            to: Con_b.to,
+            time: Con_b.time,
+            date: Con_b.date,
+            passengers: Con_b.passengers,
+          },
+        },
+      },
+      (err, result) => {
+        if (err) {
+          console.error(err);
+        } else {
+          console.log(result);
+          res.redirect("/");
+        }
+      }
+    );
+  }
 
-  // console.log(req.body);
   // console.log(avAuto.name);
   // console.log(avAuto.role);
   // console.log(avAuto.to);
   // console.log(price);
+});
+
+app.post("/driver_req", function (req, res) {
+  if (req.user && req.body) {
+    console.log(req.body);
+    const { price, d_req_with_price, driver_name } = req.body;
+    const avAuto = JSON.parse(d_req_with_price);
+    console.log(avAuto);
+    // console.log(driver_name);
+    // console.log(avAuto.to);
+    // console.log(avAuto.from);
+    const d_req = new AvilableAuto_list({
+      rec_name: avAuto.email,
+      role: avAuto.role,
+      sen_name: driver_name,
+      from: avAuto.from,
+      to: avAuto.to,
+      time: avAuto.time,
+      date: avAuto.date,
+      passengers: avAuto.passengers,
+      price: price,
+    });
+
+    User.updateOne(
+      { email: driver_name }, // specify the user's email
+      {
+        $pull: {
+          req_avi_list: {
+            email: avAuto.email,
+            from: avAuto.from,
+            to: avAuto.to,
+            time: avAuto.time,
+            date: avAuto.date,
+            passengers: avAuto.passengers,
+          },
+        },
+      },
+      { new: true },
+      (err, updatedUser) => {
+        if (err) {
+          console.error(err);
+        } else {
+          console.log(updatedUser);
+        }
+      }
+    );
+
+    User.findOne({ email: avAuto.email }, function (err, founduser) {
+      if (err) {
+        console.log(err);
+      } else {
+        founduser.Confirm_avi_list.push(d_req);
+        founduser.save();
+        res.redirect("/");
+      }
+    });
+
+    // console.log(req.body);
+    // console.log(avAuto.name);
+    // console.log(avAuto.role);
+    // console.log(avAuto.to);
+    // console.log(price);
+  }
 });
 
 // start the server
