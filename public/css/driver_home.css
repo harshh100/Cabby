@@ -46,7 +46,8 @@ body {
     margin: 1px auto;
     margin-top: -5px;
     height: 73px;
-
+    border-radius: 11px;
+    margin: 15px 20px 0px 20px;
 
 }
 
@@ -136,9 +137,9 @@ a{
     margin-left: 15px;
     border-radius: 10px;
     overflow: hidden;
-    padding: 10px;
+    /* padding: 10px; */
     background-color: #000000;
-    margin: 10px;
+    margin: 20px;
     height: fit-content;
 }
 
@@ -149,27 +150,27 @@ input {width: 70px;}
 
 .list-itm0{
     background-color: white;
-    border-radius: 5px;
+    /* border-radius: 5px; */
     padding: 10px;
     margin-bottom: 5px;
 }
 .list-itm1{
     background-color: rgb(216 216 216);
-    border-radius: 5px;
+    /* border-radius: 5px; */
     padding: 10px;
     margin-bottom: 5px;
 }
 
 .psg_pri-fb{
-    margin-bottom: -5px;
-    display: inline-block
+    
+    display: flex;
+    justify-content: space-between;
    
 }
 
-.Price{
-  margin-left: 90px;
-    
-}
+/* .Price{
+  margin-left: 90px;   
+} */
 .p-form-con{
     margin-top: -20px;
 }
@@ -178,17 +179,24 @@ input {width: 70px;}
 }
 
 .req-btn{
-    width: 100%;
-    padding: 10px 12px;
-    letter-spacing: 4px;
     text-transform: uppercase;
-    border-radius: 5px;
-    border-width: 1px;
-    background-color: #e8f9ff;
+    letter-spacing: 2px;
+    border: 2px solid black;
+    color: white;
+    background-color: black;
+    border-radius: 7px;
+    height: 40px;
+    font-size: 16px;
+    border-bottom-left-radius: 0;
+    border-top-right-radius: 0;
+    width: 100%;
 }
 .req-btn:hover{
+    border: 2px solid gray;
+    color: #ffffcc;
+    background-color: rgba(128, 128, 128, 0.55);
+    border-radius: 0px;
     cursor: pointer;
-    background-color: #e0e0ca;
 }
 
 /* cf css */

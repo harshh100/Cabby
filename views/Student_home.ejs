@@ -25,7 +25,7 @@
                     <div class="active">
                         <div class="nav-icon">
                             <img src="../images/cabby_logo_TRA.png" width="25px" alt="">
-                            <a href="User_home.html" id="ad_booking" class="nav-itm" class="text">Home</a>
+                            <a href="/" id="ad_booking" class="nav-itm" class="text">Home</a>
                         </div>
                     </div>
 
@@ -41,7 +41,7 @@
                 <li class="ul_item" class="nav-itm">
                     <div class="nav-icon">
                         <img src="../images/assignment-solid.gif" width="25px" alt="">
-                        <a href="user_Advance_Booking_List.html" id="ad_booking" class="nav-itm" class="text">Your
+                        <a href="/Advance_Booking" id="ad_booking" class="nav-itm" class="text">Your
                             Advance Booking List</a>
                     </div>
                 </li>
@@ -153,15 +153,12 @@
             <center>
                 <h1 class="av_head">Available Auto</h1>
             </center>
-
-
-
             <% for(let i=0;i<av_auto.length;i++){ %>
                 <% if(!av_auto[i]){ %>
                     <div id="beforeclick">
                         <h1>empty!!</h1>
                     </div>
-                    <%}else if(i%2==0){ %>
+                    <% }else{ %>
                         <div class="list_con" id="lc">
                             <div class="list-itm0">
                                 <div class="tripd">
@@ -211,57 +208,8 @@
                                     </form>
                                 </div>
                             </div>
-                            <% }else{ %>
-                                <div class="list-itm0">
-                                    <div class="tripd">
-                                        <div class="trip-itm">
-                                            <p>Driver : <span>
-                                                    <%=av_auto[i].sen_name%>
-                                                </span></p>
-                                        </div>
-                                        <div class="trip-itm">
-                                            <p>Paek-up : <span>
-                                                    <%=av_auto[i].from%>
-                                                </span></p>
-                                        </div>
-                                        <div class="trip-itm">
-                                            <p>Drop : <span>
-                                                    <%=av_auto[i].to%>
-                                                </span></p>
-                                        </div>
-                                        <div class="trip-itm">
-                                            <p>Time : <span>
-                                                    <%=av_auto[i].date%>
-                                                </span> <span>
-                                                    <%=av_auto[i].time%>
-                                                </span> (After 00h:00m)</p>
-                                        </div>
-
-                                        <div class="trip-itm" style="margin: -20px 0px -3px 0px">
-                                            <div class="price_pass">
-                                                <p class="passengers">Passengers : <span>
-                                                        <%=av_auto[i].passengers%>
-                                                    </span></p>
-
-                                                <p class="Price">Price : <span>
-                                                        <%=av_auto[i].price%>
-                                                    </span>
-                                                </p>
-
-                                            </div>
-                                        </div>
-                                        <form action="/con_drv" method="post" class="p-form-con">
-                                            <div class="trip-itm">
-                                                <input type="hidden" name="d_req_with_price"
-                                                    value="<%= JSON.stringify(av_auto[i]) %>" />
-                                                <input type="hidden" name="student_name" value="<%=username%>" />
-                                                <input type="submit" value="Confirm" id="submit" class="req-btn">
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
+                            <% } %>
                                 <% } %>
-                                    <% } %>
                         </div>
         </div>
     </div>
@@ -273,43 +221,6 @@
             l_b.style.display = 'none';
         }
         setTimeout(hideLoader, 5 * 100);
-
-        //list show js
-        // function showlist() {
-        //     // alert("sl call")
-        //     console.log("sl call")
-        //     let l_c = document.getElementById('lc');
-        //     let before = document.getElementById('beforeclick');
-        //     l_c.style.display = 'block';
-        //     before.style.display = 'none';
-        //     // l_itm0.style.display = 'flex'
-        //     // l_itm1.style.display = 'flex'
-        // }
-
-        // const form = document.getElementById('user_req');
-        // form.addEventListener('submit', function (e) {
-        //     e.preventDefault();
-        //     // showlist();
-        //     // const name = document.getElementById('name').value;
-        //     const email = document.getElementById('email').value;
-        //     const from = document.getElementById('from').value;
-        //     const to = document.getElementById('to').value;
-        //     const time = document.getElementById('time').value;
-        //     const date = document.getElementById('date').value;
-        //     const passengers = document.getElementById('passengers').value;
-
-        //     const xhr = new XMLHttpRequest();
-        //     xhr.open('POST', '/student_req', true);
-        //     xhr.setRequestHeader('Content-Type', 'application/json');
-        //     xhr.onreadystatechange = function () {
-        //         if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
-        //             console.log('Form submitted!');
-        //         }
-        //     }
-        //     const data = JSON.stringify({ name: name, email: email, from: from, to: to, time: time, date: date, passengers: passengers });
-        //     xhr.send(data);
-        // });
-
     </script>
 </body>
 

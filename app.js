@@ -248,15 +248,17 @@ app.get("/", (req, res) => {
       res.render(filename, {
         username: email,
         av_users: founduser.req_avi_list,
+        cn_users: founduser.Confirm_avi_list,
       });
     });
-  } else if (filename === "Student_home")
+  } else if (filename === "Student_home") {
     User.findOne({ email: email }, function (err, founduser) {
       res.render(filename, {
         username: email,
         av_auto: founduser.Confirm_avi_list,
       });
     });
+  }
 });
 
 app.post("/student_req", function (req, res) {
@@ -343,6 +345,44 @@ app.post("/con_drv", function (req, res) {
             time: Con_b.time,
             date: Con_b.date,
             passengers: Con_b.passengers,
+          },
+        },
+      },
+      { new: true },
+      (err, updatedUser) => {
+        if (err) {
+          console.error(err);
+        } else {
+          console.log(updatedUser);
+        }
+      }
+    );
+
+    User.updateOne(
+      { email: Con_b.sen_name }, // specify the user's email
+      {
+        $push: {
+          Confirm_avi_list: {
+            sen_name: Con_b.sen_name,
+            rec_name: Con_b.rec_name,
+            role: "Student",
+            from: Con_b.from,
+            to: Con_b.to,
+            time: Con_b.time,
+            date: Con_b.date,
+            passengers: Con_b.passengers,
+            price: Con_b.price,
+          },
+          Adv_B_list: {
+            sen_name: Con_b.sen_name,
+            rec_name: Con_b.rec_name,
+            role: "Student",
+            from: Con_b.from,
+            to: Con_b.to,
+            time: Con_b.time,
+            date: Con_b.date,
+            passengers: Con_b.passengers,
+            price: Con_b.price,
           },
         },
       },
@@ -447,6 +487,34 @@ app.post("/driver_req", function (req, res) {
     // console.log(avAuto.role);
     // console.log(avAuto.to);
     // console.log(price);
+  }
+});
+
+app.get("/Advance_Booking", function (req, res) {
+  const role = req.user.role;
+  const email = req.user.email;
+  console.log(role);
+  console.log(email);
+
+  if (role == "Student") {
+    User.findOne({ email: email }, function (err, founduser) {
+      console.log(role);
+      console.log(email);
+
+      res.render("user_Advance_Booking_list", {
+        username: email,
+        Adv_B_l: founduser.Adv_B_list,
+      });
+    });
+  } else if (role == "Auto-driver") {
+    console.log(role);
+    console.log(email);
+    User.findOne({ email: email }, function (err, founduser) {
+      res.render("driver_Advance_Booking_List", {
+        username: email,
+        Adv_B_l: founduser.Adv_B_list,
+      });
+    });
   }
 });
 
