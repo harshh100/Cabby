@@ -164,40 +164,100 @@
                     <%}else if(i%2==0){ %>
                         <div class="list_con" id="lc">
                             <div class="list-itm0">
-                                <div class="list_dname">
-                                    <p>Name : <span>
-                                            <%=av_auto[i].sen_name%>
-                                        </span></p>
-                                </div>
-                                <div class="list_rating">
-                                    <p>rating : <span>4.9/5</span></p>
-                                </div>
-                                <div class="list_price">
-                                    <p>price : <span>
-                                            <%=av_auto[i].price%>
-                                        </span></p>
-                                </div>
-                                <div class="list_done">
-                                    <input type="button" value="done">
-                                </div>
-                            </div>
-                            <% }else{ %>
-                                <div class="list-itm1">
-                                    <div class="list_dname">
-                                        <p>Name : <span>
+                                <div class="tripd">
+                                    <div class="trip-itm">
+                                        <p>Driver : <span>
                                                 <%=av_auto[i].sen_name%>
                                             </span></p>
                                     </div>
-                                    <div class="list_rating">
-                                        <p>rating : <span>4.9/5</span></p>
-                                    </div>
-                                    <div class="list_price">
-                                        <p>price : <span>
-                                                <%=av_auto[i].price%>
+                                    <div class="trip-itm">
+                                        <p>Paek-up : <span>
+                                                <%=av_auto[i].from%>
                                             </span></p>
                                     </div>
-                                    <div class="list_done">
-                                        <input type="button" value="done">
+                                    <div class="trip-itm">
+                                        <p>Drop : <span>
+                                                <%=av_auto[i].to%>
+                                            </span></p>
+                                    </div>
+                                    <div class="trip-itm">
+                                        <p>Time : <span>
+                                                <%=av_auto[i].date%>
+                                            </span> <span>
+                                                <%=av_auto[i].time%>
+                                            </span> (After 00h:00m)</p>
+                                    </div>
+
+                                    <div class="trip-itm">
+                                        <div class="price_pass" style="margin: -20px 0px -3px 0px">
+                                            <p class="passengers">Passengers : <span>
+                                                    <%=av_auto[i].passengers%>
+                                                </span></p>
+
+                                            <p class="Price">Price : <span>
+                                                    <%=av_auto[i].price%>
+                                                </span>
+                                            </p>
+
+                                        </div>
+                                    </div>
+                                    <form action="/driver_req" method="post" class="p-form-con"></form>
+                                    <div class="trip-itm">
+                                        <input type="hidden" name="d_req_with_price"
+                                            value="<%= JSON.stringify(av_auto[i]) %>" />
+                                        <input type="hidden" name="driver_name" value="<%=username%>" />
+                                        <input type="submit" value="Confirm" id="submit" class="req-btn">
+                                    </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <% }else{ %>
+                                <div class="list-itm0">
+                                    <div class="tripd">
+                                        <div class="trip-itm">
+                                            <p>Driver : <span>
+                                                    <%=av_auto[i].sen_name%>
+                                                </span></p>
+                                        </div>
+                                        <div class="trip-itm">
+                                            <p>Paek-up : <span>
+                                                    <%=av_auto[i].from%>
+                                                </span></p>
+                                        </div>
+                                        <div class="trip-itm">
+                                            <p>Drop : <span>
+                                                    <%=av_auto[i].to%>
+                                                </span></p>
+                                        </div>
+                                        <div class="trip-itm">
+                                            <p>Time : <span>
+                                                    <%=av_auto[i].date%>
+                                                </span> <span>
+                                                    <%=av_auto[i].time%>
+                                                </span> (After 00h:00m)</p>
+                                        </div>
+
+                                        <div class="trip-itm" style="margin: -20px 0px -3px 0px">
+                                            <div class="price_pass">
+                                                <p class="passengers">Passengers : <span>
+                                                        <%=av_auto[i].passengers%>
+                                                    </span></p>
+
+                                                <p class="Price">Price : <span>
+                                                        <%=av_auto[i].price%>
+                                                    </span>
+                                                </p>
+
+                                            </div>
+                                        </div>
+                                        <form action="/driver_req" method="post" class="p-form-con"></form>
+                                        <div class="trip-itm">
+                                            <input type="hidden" name="d_req_with_price"
+                                                value="<%= JSON.stringify(av_auto[i]) %>" />
+                                            <input type="hidden" name="driver_name" value="<%=username%>" />
+                                            <input type="submit" value="Confirm" id="submit" class="req-btn">
+                                        </div>
+                                        </form>
                                     </div>
                                 </div>
                                 <% } %>
@@ -215,21 +275,21 @@
         setTimeout(hideLoader, 5 * 100);
 
         //list show js
-        function showlist() {
-            // alert("sl call")
-            console.log("sl call")
-            let l_c = document.getElementById('lc');
-            let before = document.getElementById('beforeclick');
-            l_c.style.display = 'block';
-            before.style.display = 'none';
-            // l_itm0.style.display = 'flex'
-            // l_itm1.style.display = 'flex'
-        }
+        // function showlist() {
+        //     // alert("sl call")
+        //     console.log("sl call")
+        //     let l_c = document.getElementById('lc');
+        //     let before = document.getElementById('beforeclick');
+        //     l_c.style.display = 'block';
+        //     before.style.display = 'none';
+        //     // l_itm0.style.display = 'flex'
+        //     // l_itm1.style.display = 'flex'
+        // }
 
         const form = document.getElementById('user_req');
         form.addEventListener('submit', function (e) {
             e.preventDefault();
-            showlist();
+            // showlist();
             // const name = document.getElementById('name').value;
             const email = document.getElementById('email').value;
             const from = document.getElementById('from').value;

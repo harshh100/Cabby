@@ -178,7 +178,7 @@ input {
     padding: 10px 12px;
 }
 
-form {
+.formcon form {
     background-color: white;
     border-radius: 6px;
     font-size: 18px;
@@ -223,14 +223,15 @@ form {
 
 
 /* avilable block css */
-.list_con{
+/* .list_con{
 display: none;
-}
+} */
 .av_con{
     width: 50%;
     margin-left: 15px;
     border-radius: 10px;
     overflow: hidden;
+    background-color: black;
 }
 
 .av_head{
@@ -243,55 +244,35 @@ display: none;
 }
 
 
-/* list css */
-#beforeclick h1{
-    background-color: white;
-    text-align: center;
-    padding: 10px;
-    margin-top: 0px;
-}
-
 .list-itm0{
-    display: flex;
-    /* display: none; */
-    justify-content: space-around;
-    align-items: baseline;
     background-color: white;
+    /* border-radius: 5px; */
+    padding: 10px;
+    margin-bottom: 3px;
 }
-.list-itm1{
-    display: flex;
-    /* display: none; */
-
-    justify-content: space-around;
-    align-items: baseline;
+/* .list-itm1{
     background-color: rgb(216 216 216);
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 5px;
+} */
+
+
+.Price{
+    margin-right: 18px;
+    
 }
-.list_dname{
-    width: 150px;
+.p-form-con{
+    /* margin-top: -34px; */
 }
-.list_rating{
-    width: 100px;
+.tripd{
+    margin-top: -10px;
 }
-.list_price{
-    width: 90px;
+.price_pass{
+    display: flex;
+    justify-content: space-between;
 }
-.list_done{
-    width: 85px;
-}
-.list_done input{
-    text-transform: uppercase;
-    /* border: green solid; */
-    background-color: green;
-    color: white;
-    width: 85px;
-    cursor: pointer;
-}
-.list_done input:hover {
-    background-color: white;
-    width: 85px;
-    color: green;
-    cursor: pointer;
-}
+
 
 @media(max-width:575px) {
     
