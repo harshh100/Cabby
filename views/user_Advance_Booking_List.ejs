@@ -68,10 +68,10 @@
 
     <div class="cf_con">
         <center>
-            <h1 class="cf_head">Your Upcoming Trip</h1>
+            <h1 class="cf_head">Your Upcoming/Past Trip</h1>
         </center>
         <div class="cf-list_con">
-            <% for(let i=0;i<Adv_B_l.length;i++){ %>
+            <% for(let i=Adv_B_l.length-1;i>=0;i--){ %>
                 <% if(!Adv_B_l[i]){ %>
                     <div id="beforeclick">
                         <h1>empty!!</h1>
@@ -95,11 +95,11 @@
                                         </span></p>
                                 </div>
                                 <div class="trip-itm time">
-                                    <p>Time : <span>
-                                            <%=Adv_B_l[i].date%>
+                                    <p>Date : <span>
+                                            <%=Adv_B_l[i].date%> <span> / Time </span>
                                         </span> <span>
                                             <%=Adv_B_l[i].time%>
-                                        </span> (After 00h:00m)</p>
+                                        </span></p>
                                 </div>
                                 <div class="inlinecon">
                                     <div class="trip-itm Passengers psg_pri-fb">
@@ -134,11 +134,11 @@
                                             </span></p>
                                     </div>
                                     <div class="trip-itm time">
-                                        <p>Time : <span>
-                                                <%=Adv_B_l[i].date%>
+                                        <p>Date : <span>
+                                                <%=Adv_B_l[i].date%> <span> / Time </span>
                                             </span> <span>
                                                 <%=Adv_B_l[i].time%>
-                                            </span> (After 00h:00m)</p>
+                                            </span></p>
                                     </div>
                                     <div class="inlinecon">
                                         <div class="trip-itm Passengers psg_pri-fb">

@@ -121,11 +121,12 @@
                 </p>
                 <p class="form-itm"><span class="f-box"><img src="../images/calendar-solid.gif" class="icn" alt="">
                         Date <span>: </span></span>
-                    <select name="date" id="date" required>
+                    <input type="date" name="date" id="date" required>
+                    <!-- <select>
                         <option value=""> Select Date </option>
                         <option value="Today">Today</option>
                         <option value="Tomorrow">Tomorrow</option>
-                    </select>
+                    </select> -->
                 </p>
 
                 <p class="form-itm"><span class="f-box"><img src="../images/people.gif" class="icn" alt=""> Passengers
@@ -153,7 +154,7 @@
             <center>
                 <h1 class="av_head">Available Auto</h1>
             </center>
-            <% for(let i=0;i<av_auto.length;i++){ %>
+            <% for(let i=av_auto.length-1;i>=0;i--){ %>
                 <% if(!av_auto[i]){ %>
                     <div id="beforeclick">
                         <h1>empty!!</h1>
@@ -178,11 +179,11 @@
                                             </span></p>
                                     </div>
                                     <div class="trip-itm">
-                                        <p>Time : <span>
-                                                <%=av_auto[i].date%>
+                                        <p>Date : <span>
+                                                <%=av_auto[i].date%> <span> / Time </span>
                                             </span> <span>
                                                 <%=av_auto[i].time%>
-                                            </span> (After 00h:00m)</p>
+                                            </span></p>
                                     </div>
 
                                     <div class="trip-itm">
@@ -195,7 +196,6 @@
                                                     <%=av_auto[i].price%>
                                                 </span>
                                             </p>
-
                                         </div>
                                     </div>
                                     <form action="/con_drv" method="post" class="p-form-con">
@@ -203,14 +203,15 @@
                                             <input type="hidden" name="d_req_with_price"
                                                 value="<%= JSON.stringify(av_auto[i]) %>" />
                                             <input type="hidden" name="student_name" value="<%=username%>" />
+                                            <input type="hidden" name="phn" value="<%=phn%>" />
                                             <input type="submit" value="Confirm" id="submit" class="con-btn">
                                         </div>
                                     </form>
                                 </div>
                             </div>
-                            <% } %>
-                                <% } %>
                         </div>
+                        <% } %>
+                            <% } %>
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -221,6 +222,23 @@
             l_b.style.display = 'none';
         }
         setTimeout(hideLoader, 5 * 100);
+
+
+        // set min and max of date
+        var today = new Date();
+        var tomorrow = new Date();
+        tomorrow.setDate(today.getDate() + 1);
+
+        document.getElementById("date").setAttribute("min", formatDate(today));
+        document.getElementById("date").setAttribute("max", formatDate(tomorrow));
+
+        // formate the date YYYY-MM-DD
+        function formatDate(date) {
+            var year = date.getFullYear();
+            var month = ("0" + (date.getMonth() + 1)).slice(-2);
+            var day = ("0" + date.getDate()).slice(-2);
+            return year + "-" + month + "-" + day;
+        }
     </script>
 </body>
 

@@ -72,6 +72,10 @@ const trip_list_Schema = new mongoose.Schema({
     type: Number,
     require: true,
   },
+  phoneno: {
+    type: String,
+    require: true,
+  },
 });
 
 const req_Avi_userlist_Schema = new mongoose.Schema({
@@ -256,6 +260,7 @@ app.get("/", (req, res) => {
       res.render(filename, {
         username: email,
         av_auto: founduser.Confirm_avi_list,
+        phn: founduser.phoneno,
       });
     });
   }
@@ -263,7 +268,7 @@ app.get("/", (req, res) => {
 
 app.post("/student_req", function (req, res) {
   if (req.user && req.body) {
-    console.log(req.body);
+    // console.log(req.body);
     // console.log(req.user.email);
     // console.log(req.user.role);
     // console.log(req.user.name);
@@ -313,14 +318,15 @@ app.post("/student_req", function (req, res) {
 
 app.post("/con_drv", function (req, res) {
   if (req.user && req.body) {
-    console.log("/con_drv");
+    // console.log("/con_drv");
     // console.log(req.body.d_req_with_price);
     const con_b = req.body.d_req_with_price;
     const student_name = req.body.student_name;
-    console.log(con_b);
-    console.log(student_name);
+    const phn = req.body.phn;
+    // console.log(con_b);
+    // console.log(student_name);
     const Con_b = JSON.parse(con_b);
-    console.log(Con_b);
+    // console.log(Con_b);
     //new code
     User.findOneAndUpdate(
       { email: Con_b.rec_name }, // specify the user's email
@@ -336,6 +342,7 @@ app.post("/con_drv", function (req, res) {
             date: Con_b.date,
             passengers: Con_b.passengers,
             price: Con_b.price,
+            phoneno: phn,
           },
         },
         $pull: {
@@ -353,7 +360,7 @@ app.post("/con_drv", function (req, res) {
         if (err) {
           console.error(err);
         } else {
-          console.log(updatedUser);
+          // console.log(updatedUser);
         }
       }
     );
@@ -372,6 +379,7 @@ app.post("/con_drv", function (req, res) {
             date: Con_b.date,
             passengers: Con_b.passengers,
             price: Con_b.price,
+            phoneno: phn,
           },
           Adv_B_list: {
             sen_name: Con_b.sen_name,
@@ -383,6 +391,7 @@ app.post("/con_drv", function (req, res) {
             date: Con_b.date,
             passengers: Con_b.passengers,
             price: Con_b.price,
+            phoneno: phn,
           },
         },
       },
@@ -391,7 +400,7 @@ app.post("/con_drv", function (req, res) {
         if (err) {
           console.error(err);
         } else {
-          console.log(updatedUser);
+          // console.log(updatedUser);
         }
       }
     );
@@ -414,7 +423,7 @@ app.post("/con_drv", function (req, res) {
         if (err) {
           console.error(err);
         } else {
-          console.log(result);
+          // console.log(result);
           res.redirect("/");
         }
       }
@@ -429,10 +438,10 @@ app.post("/con_drv", function (req, res) {
 
 app.post("/driver_req", function (req, res) {
   if (req.user && req.body) {
-    console.log(req.body);
+    // console.log(req.body);
     const { price, d_req_with_price, driver_name } = req.body;
     const avAuto = JSON.parse(d_req_with_price);
-    console.log(avAuto);
+    // console.log(avAuto);
     // console.log(driver_name);
     // console.log(avAuto.to);
     // console.log(avAuto.from);
@@ -467,7 +476,7 @@ app.post("/driver_req", function (req, res) {
         if (err) {
           console.error(err);
         } else {
-          console.log(updatedUser);
+          // console.log(updatedUser);
         }
       }
     );
@@ -493,13 +502,13 @@ app.post("/driver_req", function (req, res) {
 app.get("/Advance_Booking", function (req, res) {
   const role = req.user.role;
   const email = req.user.email;
-  console.log(role);
-  console.log(email);
+  // console.log(role);
+  // console.log(email);
 
   if (role == "Student") {
     User.findOne({ email: email }, function (err, founduser) {
-      console.log(role);
-      console.log(email);
+      // console.log(role);
+      // console.log(email);
 
       res.render("user_Advance_Booking_list", {
         username: email,
@@ -507,8 +516,8 @@ app.get("/Advance_Booking", function (req, res) {
       });
     });
   } else if (role == "Auto-driver") {
-    console.log(role);
-    console.log(email);
+    // console.log(role);
+    // console.log(email);
     User.findOne({ email: email }, function (err, founduser) {
       res.render("driver_Advance_Booking_List", {
         username: email,

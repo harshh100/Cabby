@@ -67,7 +67,7 @@
                 <h1 class="av_head">Available User</h1>
             </center>
             <div class="list_con">
-                <% for(let i=0;i<av_users.length;i++){ %>
+                <% for(let i=av_users.length-1;i>=0;i--){ %>
                     <% if(!av_users[i]){ %>
                         <div class="befor">
                             <h1>empty</h1>
@@ -86,11 +86,11 @@
                                             </span></p>
                                     </div>
                                     <div class="trip-itm">
-                                        <p>Time : <span>
-                                                <%=av_users[i].date%>
+                                        <p>Date : <span>
+                                                <%=av_users[i].date%> <span> / Time </span>
                                             </span> <span>
                                                 <%=av_users[i].time%>
-                                            </span> (After 00h:00m)</p>
+                                            </span></p>
                                     </div>
                                     <form action="/driver_req" method="post" class="p-form-con">
                                         <div class="trip-itm psg_pri-fb">
@@ -124,7 +124,7 @@
                 <h1 class="cf_head">confirm User</h1>
             </center>
             <div class="cf-list_con">
-                <% for(let i=0;i<cn_users.length;i++){ %>
+                <% for(let i=cn_users.length-1;i>=0;i--){ %>
                     <% if(!cn_users[i]){ %>
                         <div class="befor">
                             <h1>empty</h1>
@@ -132,6 +132,11 @@
                         <% }else{ %>
                             <div class="list-itm0">
                                 <div class="tripd">
+                                    <div class="trip-itm">
+                                        <p>Name : <span>
+                                                <%=cn_users[i].rec_name%>
+                                            </span></p>
+                                    </div>
                                     <div class="trip-itm">
                                         <p>Paek-up : <span>
                                                 <%=cn_users[i].from%>
@@ -143,11 +148,11 @@
                                             </span></p>
                                     </div>
                                     <div class="trip-itm">
-                                        <p>Time : <span>
-                                                <%=cn_users[i].date%>
+                                        <p>Date : <span>
+                                                <%=cn_users[i].date%> <span> / Time </span>
                                             </span> <span>
                                                 <%=cn_users[i].time%>
-                                            </span> (After 00h:00m)</p>
+                                            </span></p>
                                     </div>
                                     <form action="/driver_req" method="post" class="p-form-con">
                                         <div class="trip-itm psg_pri-fb">
@@ -164,7 +169,7 @@
                                             </div>
                                         </div>
                                         <div class="trip-itm">
-                                            <input type="submit" value="Add To Advance Booking List" id="submit"
+                                            <input type="submit" value="Call : <%=cn_users[i].phoneno%>" id="submit"
                                                 class="req-btn">
                                         </div>
                                     </form>
