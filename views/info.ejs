@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>info</title>
+    <!-- favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link rel="manifest" href="images/site.webmanifest">
+    <script>
+
+        //loader js
+        function hideLoader() {
+            let l_b = document.getElementById('loader_bg');
+            l_b.style.display = 'none';
+        }
+        setTimeout(hideLoader, 5 * 100);
+    </script>
+    <style>
+        body {
+            background-color: #f2f2f2;
+            font-family: 'Open Sans', sans-serif;
+
+
+        }
+
+        /* loader css */
+        .loader {
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .loader_bg {
+            position: fixed;
+            z-index: 999;
+            background: #f2f2f2;
+            width: 100%;
+            height: 100%;
+        }
+
+        @import url("https://fonts.googleapis.com/css2?family=Merriweather:wght@900&family=Sumana:wght@700&display=swap");
+
+        .info-sec {
+            align-items: center;
+            background-color: #f2f2f2;
+            display: flex;
+            font-family: "Merriweather", serif;
+            flex-wrap: wrap;
+            justify-content: center;
+            height: 390px;
+            margin: 0;
+        }
+
+        .person {
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+            width: 280px;
+            height: 430px;
+        }
+
+        .container {
+            border-radius: 50%;
+            height: 290px;
+            -webkit-tap-highlight-color: transparent;
+            transform: scale(0.48);
+            transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+            width: 400px;
+        }
+
+        .container:after {
+            background-color: #f2f2f2;
+            content: "";
+            height: 10px;
+            position: absolute;
+            top: 390px;
+            width: 100%;
+        }
+
+        .container:hover {
+            transform: scale(0.54);
+        }
+
+        .container-inner {
+            clip-path: path("M 390,400 C 390,504.9341 304.9341,590 200,590 95.065898,590 10,504.9341 10,400 V 10 H 200 390 Z"
+                );
+            position: relative;
+            transform-origin: 50%;
+            top: -200px;
+        }
+
+        .circle {
+            background-color: #fee7d3;
+            border-radius: 50%;
+            cursor: pointer;
+            height: 380px;
+            left: 10px;
+            pointer-events: none;
+            position: absolute;
+            top: 210px;
+            width: 380px;
+        }
+
+        .img {
+            pointer-events: none;
+            position: relative;
+            transform: translateY(20px) scale(1.15);
+            transform-origin: 50% bottom;
+            transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .container:hover .img {
+            transform: translateY(0) scale(1.2);
+        }
+
+        .hp_img {
+            left: -12px;
+            top: 152px;
+            width: 443px;
+        }
+
+        .dp_img {
+            left: -33px;
+            top: 175px;
+            width: 444px;
+        }
+
+        .kn_img {
+            left: 30px;
+            top: 134px;
+            width: 336px;
+        }
+
+        .divider {
+            background-color: black;
+            height: 1px;
+            width: 160px;
+        }
+
+        .name {
+            color: #404245;
+            font-size: 30px;
+            font-weight: 600;
+            margin-top: 16px;
+            text-align: center;
+        }
+
+        .title {
+            color: #6e6e6e;
+            font-family: arial;
+            font-size: 14px;
+            font-style: italic;
+            margin-top: 4px;
+        }
+
+        /* nav css */
+        .navcontainer {
+            font-size: 20px;
+            font-family: 'Open Sans', sans-serif;
+            background-color: #000000;
+            text-align: center;
+            margin: 1px auto;
+            margin-top: -5px;
+            height: 73px;
+            border-radius: 11px;
+            margin: 15px 20px 0px 20px;
+
+        }
+
+        .btns {
+
+            display: inline-block;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            text-align: right;
+        }
+
+        .ul_item {
+
+            display: inline-block;
+            position: relative;
+            vertical-align: middle;
+            padding: 2px;
+            margin: 0;
+            margin-bottom: 5px;
+            height: 100%;
+
+        }
+
+        .active .nav-itm {
+            display: inline;
+            font-weight: bold;
+
+        }
+
+        .active img {
+            display: none;
+        }
+
+        .nav-icon {
+            padding: 10px 12px;
+            text-decoration: none;
+            border-radius: 10px;
+            border: #404040 solid;
+            border-width: 2px;
+            font-family: Georgia, serif;
+        }
+
+        .nav-icon:hover {
+            background-color: rgba(128, 128, 128, 0.55);
+        }
+
+        .nav-itm {
+            display: none;
+
+        }
+
+        .nav-icon {
+            display: inline-block;
+            margin: 10px;
+
+        }
+
+        .nav-icon:hover .nav-itm {
+            display: inline;
+            color: #ffffcc;
+            animation: fade-in 1.5s;
+        }
+
+        .nav-icon:hover img {
+            display: none;
+        }
+
+        .navcontainer img {
+            filter: invert(100%);
+        }
+
+        a {
+            text-decoration: none;
+            color: #ffffcc;
+        }
+
+        @keyframes fade-in {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="loader_bg" id="loader_bg">
+        <div class="loader"><img src="../images/cabby_logo_TRA.gif" width="100px" alt="#" /></div>
+    </div>
+    <header>
+        <div class="navcontainer">
+            <ul class="btns">
+                <li class="ul_item" class="nav-itm">
+                    <div class="nav-icon">
+                        <img src="../images/cabby_logo_TRA.png" width="25px" alt="">
+                        <a href="/" id="ad_booking" class="nav-itm" class="text">Home</a>
+                    </div>
+
+                </li>
+                <li class="ul_item" class="nav-itm">
+                    <div class="nav-icon">
+                        <img src="../images/account-solid.gif" width="25px" alt="">
+                        <p id="userName" class="nav-itm" class="text">
+                            <%= username %>
+                        </p>
+                    </div>
+                </li>
+                <li class="ul_item" class="nav-itm">
+
+                    <div class="nav-icon">
+                        <img src="../images/assignment-solid.gif" width="25px" alt="">
+                        <a href="/Advance_Booking" id="ad_booking" class="nav-itm" class="text">Your
+                            Advance Booking List</a>
+
+                    </div>
+                </li>
+                <li class="ul_item" class="nav-itm">
+                    <div class="active">
+                        <div class="nav-icon">
+                            <img src="../images/28-info-solid.gif" width="25px" alt="">
+                            <a href="/info" id="info" class="nav-itm" class="text">Info</a>
+                        </div>
+                    </div>
+                </li>
+                <li class="ul_item" class="nav-itm">
+                    <div class="nav-icon">
+                        <img src="../images/logout.png" width="25px" alt="">
+                        <a href="/logout" id="info" class="nav-itm" class="text">Logout</a>
+
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <div class="info-sec">
+        <div class="person">
+            <div class="container">
+                <div class="container-inner">
+                    <img class="circle" src="images/images.jpeg" />
+                    <img class="img hp_img" src="images/harsh1.png" />
+                </div>
+            </div>
+            <div class="divider"></div>
+            <div class="name">Harsh Patel</div>
+            <div class="title">
+                <span>
+                    Role : Full Stack Developer
+                </span>
+            </div>
+        </div>
+        <div class="person">
+            <div class="container">
+                <div class="container-inner">
+                    <img class="circle" src="images/images.jpeg" />
+                    <img class="img dp_img" src="images/dhaval1.png" />
+                </div>
+            </div>
+            <div class="divider"></div>
+            <div class="name">Dhaval Patel</div>
+            <div class="title">Role : Back-end Developer</div>
+        </div>
+        <div class="person">
+            <div class="container">
+                <div class="container-inner">
+                    <img class="circle" src="images/images.jpeg" />
+                    <img class="img kn_img" src="images/kabir1.png" />
+                </div>
+            </div>
+            <div class="divider"></div>
+            <div class="name">Kabir Navadiya</div>
+            <div class="title">Role : Back-end Developer</div>
+        </div>
+    </div>
+</body>
+
+</html>

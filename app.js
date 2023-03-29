@@ -553,6 +553,15 @@ app.post("/remove_f_con_u", function (req, res) {
   );
 });
 
+app.get("/info", function (req, res) {
+  // console.log(req.user.email);
+  if (req.user) {
+    res.render("info", { username: req.user.email });
+  } else {
+    res.redirect("/");
+  }
+});
+
 // start the server
 app.listen(3000, () => {
   console.log("Server started on http://localhost:3000");
