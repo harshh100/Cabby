@@ -234,6 +234,7 @@ display: none;
     border-radius: 10px;
     overflow: hidden;
     background-color: black;
+    height: fit-content;
 }
 
 .av_head{
