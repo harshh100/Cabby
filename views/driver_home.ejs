@@ -154,34 +154,36 @@
                                                 <%=cn_users[i].time%>
                                             </span></p>
                                     </div>
-                                    <form action="/driver_req" method="post" class="p-form-con">
-                                        <div class="trip-itm psg_pri-fb">
-                                            <div class="Passengers">
-                                                <p>Passengers : <span>
-                                                        <%=cn_users[i].passengers%>
-                                                    </span></p>
-                                            </div>
-                                            <div class="Price">
-                                                <p>Price : <span>
-                                                        <%=cn_users[i].price%>
-                                                    </span>
-                                                </p>
-                                            </div>
+
+                                    <div class="trip-itm psg_pri-fb">
+                                        <div class="Passengers">
+                                            <p>Passengers : <span>
+                                                    <%=cn_users[i].passengers%>
+                                                </span></p>
                                         </div>
-                                        <div class="trip-itm">
-                                            <input type="submit" value="Call : <%=cn_users[i].phoneno%>" id="submit"
-                                                class="req-btn">
+                                        <div class="Price">
+                                            <p>Price : <span>
+                                                    <%=cn_users[i].price%>
+                                                </span>
+                                            </p>
                                         </div>
-                                    </form>
+                                    </div>
+                                    <div class="trip-itm call-add">
+                                        <p class="call-add-btn call-sec">Call : <%=cn_users[i].phoneno%>
+                                        </p>
+                                        <form action="/remove_f_con_u" method="post">
+                                            <!-- <input type="hidden" name="userdata"
+                                                value="<%= JSON.stringify(cn_users[i].sen_name) %>" /> -->
+                                            <input type="hidden" name="driver_n" value="<%=cn_users[i].sen_name%>" />
+                                            <input type="hidden" name="_id" value="<%=cn_users[i]._id%>" />
+                                            <input type="submit" value="Add To Booking List" id="add_to_list"
+                                                class="call-add-btn">
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                             <% } %>
                                 <% } %>
-
-
-
-
-
             </div>
         </div>
     </div>

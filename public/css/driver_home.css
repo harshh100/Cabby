@@ -243,3 +243,34 @@ input {width: 70px;}
 .inlinecon{
     margin-top:-20px;
 }
+
+.call-add{
+    display: flex;
+    align-items: center;
+    margin: -10px 0px;
+}
+
+.call-sec{
+    text-align: center;
+    line-height: 38px;
+    margin-right: 20px;
+}
+
+.call-add-btn{
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border: 2px solid black;
+    color: white;
+    background-color: black;
+    border-radius: 7px;
+    height: 40px;
+    font-size: 16px;
+    width: 100%;
+}
+.call-add-btn:hover{
+    border: 2px solid gray;
+    color: #ffffcc;
+    background-color: rgba(128, 128, 128, 0.55);
+    border-radius: 0px;
+    cursor: pointer;
+}

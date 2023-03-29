@@ -527,6 +527,32 @@ app.get("/Advance_Booking", function (req, res) {
   }
 });
 
+app.post("/remove_f_con_u", function (req, res) {
+  // console.log(req.body);
+  const id = req.body._id;
+  const driver_name = req.body.driver_n;
+
+  User.updateOne(
+    { email: driver_name }, // specify the user's email
+    {
+      $pull: {
+        Confirm_avi_list: {
+          _id: id,
+        },
+      },
+    },
+    { new: true },
+    (err, updatedUser) => {
+      if (err) {
+        console.error(err);
+      } else {
+        res.redirect("/");
+        // console.log(updatedUser);
+      }
+    }
+  );
+});
+
 // start the server
 app.listen(3000, () => {
   console.log("Server started on http://localhost:3000");
