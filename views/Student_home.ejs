@@ -15,6 +15,7 @@
     <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+
     <link rel="manifest" href="images/site.webmanifest">
 </head>
 
@@ -77,7 +78,7 @@
             <center>
                 <h1 class="tp_head">Trip Map</h1>
             </center>
-            <form action="/student_req" method="post" id="user_req">
+            <form action="/student_req" method="post" id="user_req" onsubmit="form_submited()">
                 <!-- action="/student_req" method="post" -->
                 <p class=" form-itm"> <span class="f-box"> <img src="../images/home-solid.gif" class="icn" alt=""> From
                         <span>: </span>
@@ -160,64 +161,60 @@
             <center>
                 <h1 class="av_head">Available Auto</h1>
             </center>
+
             <% for(let i=av_auto.length-1;i>=0;i--){ %>
-                <% if(!av_auto[i]){ %>
-                    <div id="beforeclick">
-                        <h1>empty!!</h1>
-                    </div>
-                    <% }else{ %>
-                        <div class="list_con" id="lc">
-                            <div class="list-itm0">
-                                <div class="tripd">
-                                    <div class="trip-itm">
-                                        <p>Driver : <span>
-                                                <%=av_auto[i].sen_name%>
-                                            </span></p>
-                                    </div>
-                                    <div class="trip-itm">
-                                        <p>Paek-up : <span>
-                                                <%=av_auto[i].from%>
-                                            </span></p>
-                                    </div>
-                                    <div class="trip-itm">
-                                        <p>Drop : <span>
-                                                <%=av_auto[i].to%>
-                                            </span></p>
-                                    </div>
-                                    <div class="trip-itm">
-                                        <p>Date : <span>
-                                                <%=av_auto[i].date%> <span> / Time </span>
-                                            </span> <span>
-                                                <%=av_auto[i].time%>
-                                            </span></p>
-                                    </div>
 
-                                    <div class="trip-itm">
-                                        <div class="price_pass" style="margin: -20px 0px -3px 0px">
-                                            <p class="passengers">Passengers : <span>
-                                                    <%=av_auto[i].passengers%>
-                                                </span></p>
+                <div class="list_con" id="lc">
+                    <div class="list-itm0">
+                        <div class="tripd">
+                            <div class="trip-itm">
+                                <p>Driver : <span>
+                                        <%=av_auto[i].sen_name%>
+                                    </span></p>
+                            </div>
+                            <div class="trip-itm">
+                                <p>Paek-up : <span>
+                                        <%=av_auto[i].from%>
+                                    </span></p>
+                            </div>
+                            <div class="trip-itm">
+                                <p>Drop : <span>
+                                        <%=av_auto[i].to%>
+                                    </span></p>
+                            </div>
+                            <div class="trip-itm">
+                                <p>Date : <span>
+                                        <%=av_auto[i].date%> <span> / Time </span>
+                                    </span> <span>
+                                        <%=av_auto[i].time%>
+                                    </span></p>
+                            </div>
 
-                                            <p class="Price">Price : <span>
-                                                    <%=av_auto[i].price%>
-                                                </span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <form action="/con_drv" method="post" class="p-form-con">
-                                        <div class="trip-itm">
-                                            <input type="hidden" name="d_req_with_price"
-                                                value="<%= JSON.stringify(av_auto[i]) %>" />
-                                            <input type="hidden" name="student_name" value="<%=username%>" />
-                                            <input type="hidden" name="phn" value="<%=phn%>" />
-                                            <input type="submit" value="Confirm" id="submit" class="con-btn">
-                                        </div>
-                                    </form>
+                            <div class="trip-itm">
+                                <div class="price_pass" style="margin: -20px 0px -3px 0px">
+                                    <p class="passengers">Passengers : <span>
+                                            <%=av_auto[i].passengers%>
+                                        </span></p>
+
+                                    <p class="Price">Price : <span>
+                                            <%=av_auto[i].price%>
+                                        </span>
+                                    </p>
                                 </div>
                             </div>
+                            <form action="/con_drv" method="post" class="p-form-con" onsubmit="confirm_driver()">
+                                <div class="trip-itm">
+                                    <input type="hidden" name="d_req_with_price"
+                                        value="<%= JSON.stringify(av_auto[i]) %>" />
+                                    <input type="hidden" name="student_name" value="<%=username%>" />
+                                    <input type="hidden" name="phn" value="<%=phn%>" />
+                                    <input type="submit" value="Confirm" id="submit" class="con-btn">
+                                </div>
+                            </form>
                         </div>
-                        <% } %>
-                            <% } %>
+                    </div>
+                </div>
+                <% } %>
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -230,13 +227,21 @@
         setTimeout(hideLoader, 5 * 100);
 
 
+        function form_submited() {
+            alert("Your Request Submitted Successfully!!,Wait Until We Found Best Auto-driver For You..");
+        }
+
+        function confirm_driver() {
+            alert("Your Ride Confirmed!!,Auto-driver Will Call You Soon To Confirmation..");
+        }
+
         // set min and max of date
         var today = new Date();
         var tomorrow = new Date();
         tomorrow.setDate(today.getDate() + 1);
 
         document.getElementById("date").setAttribute("min", formatDate(today));
-        document.getElementById("date").setAttribute("max", formatDate(tomorrow));
+        // document.getElementById("date").setAttribute("max", formatDate(tomorrow));
 
         // formate the date YYYY-MM-DD
         function formatDate(date) {
@@ -245,6 +250,12 @@
             var day = ("0" + date.getDate()).slice(-2);
             return year + "-" + month + "-" + day;
         }
+
+        //for notification
+        // check if the browser supports notifications
+
+
+
     </script>
 </body>
 
