@@ -238,10 +238,10 @@
         // set min and max of date
         var today = new Date();
         var tomorrow = new Date();
-        tomorrow.setDate(today.getDate() + 1);
+        tomorrow.setDate(today.getDate() + 3);
 
         document.getElementById("date").setAttribute("min", formatDate(today));
-        // document.getElementById("date").setAttribute("max", formatDate(tomorrow));
+        document.getElementById("date").setAttribute("max", formatDate(tomorrow));
 
         // formate the date YYYY-MM-DD
         function formatDate(date) {
