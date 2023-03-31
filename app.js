@@ -562,6 +562,15 @@ app.get("/info", function (req, res) {
   }
 });
 
+app.get("/driver_profile", function (req, res) {
+  // console.log(req.user.email);
+  if (req.user) {
+    res.render("driver_profile", { username: req.user.email });
+  } else {
+    res.redirect("/");
+  }
+});
+
 // start the server
 app.listen(3000, () => {
   console.log("Server started on http://localhost:3000");
