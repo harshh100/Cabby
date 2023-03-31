@@ -146,8 +146,45 @@ const userSchema = new mongoose.Schema({
   req_avi_list: [req_Avi_userlist_Schema],
 });
 
+// const driver_bio_Schema = new mongoose.Schema({
+//   fris_name: {
+//     type: String,
+//     require: true,
+//   },
+//   last_name: {
+//     type: String,
+//     require: true,
+//   },
+//   birtdate: {
+//     type: String,
+//     require: true,
+//   },
+//   mobile: {
+//     type: String,
+//     require: true,
+//   },
+//   licence_number: {
+//     type: String,
+//     require: true,
+//   },
+//   vehicle_number: {
+//     type: String,
+//     require: true,
+//   },
+//   email: {
+//     type: Number,
+//     require: true,
+//     unique: true,
+//   },
+//   joining_date: {
+//     type: String,
+//     require: true,
+//   },
+// });
+
 // define a User model based on the user schema
 const User = mongoose.model("User", userSchema);
+// const Driver_bio = mongoose.model("Driver_bio", driver_bio_Schema);
 const Avilableuser_list = mongoose.model(
   "Avilableuser",
   req_Avi_userlist_Schema
@@ -226,6 +263,30 @@ app.post("/sign_up", (req, res) => {
     gender: req.body.gender,
     role: req.body.role,
   });
+
+  // const bio = new Driver_bio({
+  //   fris_name: "-",
+  //   last_name: "-",
+  //   birtdate: "-",
+  //   mobile: ,
+  //   licence_number: {
+  //     type: String,
+  //     require: true,
+  //   },
+  //   vehicle_number: {
+  //     type: String,
+  //     require: true,
+  //   },
+  //   email: {
+  //     type: Number,
+  //     require: true,
+  //     unique: true,
+  //   },
+  //   joining_date: {
+  //     type: String,
+  //     require: true,
+  //   },
+  // })
 
   user.save((err) => {
     if (err) {
