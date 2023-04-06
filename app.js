@@ -146,45 +146,45 @@ const userSchema = new mongoose.Schema({
   req_avi_list: [req_Avi_userlist_Schema],
 });
 
-// const driver_bio_Schema = new mongoose.Schema({
-//   fris_name: {
-//     type: String,
-//     require: true,
-//   },
-//   last_name: {
-//     type: String,
-//     require: true,
-//   },
-//   birtdate: {
-//     type: String,
-//     require: true,
-//   },
-//   mobile: {
-//     type: String,
-//     require: true,
-//   },
-//   licence_number: {
-//     type: String,
-//     require: true,
-//   },
-//   vehicle_number: {
-//     type: String,
-//     require: true,
-//   },
-//   email: {
-//     type: Number,
-//     require: true,
-//     unique: true,
-//   },
-//   joining_date: {
-//     type: String,
-//     require: true,
-//   },
-// });
+const driver_bio_Schema = new mongoose.Schema({
+  frist_name: {
+    type: String,
+    require: true,
+  },
+  last_name: {
+    type: String,
+    require: true,
+  },
+  birtdate: {
+    type: String,
+    require: true,
+  },
+  mobile: {
+    type: String,
+    require: true,
+  },
+  li_number: {
+    type: String,
+    require: true,
+  },
+  ve_number: {
+    type: String,
+    require: true,
+  },
+  email: {
+    type: String,
+    require: true,
+    unique: true,
+  },
+  j_date: {
+    type: String,
+    require: true,
+  },
+});
 
 // define a User model based on the user schema
 const User = mongoose.model("User", userSchema);
-// const Driver_bio = mongoose.model("Driver_bio", driver_bio_Schema);
+const Driver_bio = mongoose.model("Driver_bio", driver_bio_Schema);
 const Avilableuser_list = mongoose.model(
   "Avilableuser",
   req_Avi_userlist_Schema
@@ -264,29 +264,27 @@ app.post("/sign_up", (req, res) => {
     role: req.body.role,
   });
 
-  // const bio = new Driver_bio({
-  //   fris_name: "-",
-  //   last_name: "-",
-  //   birtdate: "-",
-  //   mobile: ,
-  //   licence_number: {
-  //     type: String,
-  //     require: true,
-  //   },
-  //   vehicle_number: {
-  //     type: String,
-  //     require: true,
-  //   },
-  //   email: {
-  //     type: Number,
-  //     require: true,
-  //     unique: true,
-  //   },
-  //   joining_date: {
-  //     type: String,
-  //     require: true,
-  //   },
-  // })
+  function formatDate(date) {
+    var year = date.getFullYear();
+    var month = ("0" + (date.getMonth() + 1)).slice(-2);
+    var day = ("0" + date.getDate()).slice(-2);
+    return year + "-" + month + "-" + day;
+  }
+  var today = new Date();
+  let j_d = formatDate(today);
+
+  const bio = new Driver_bio({
+    frist_name: req.body.name,
+    last_name: "-",
+    birtdate: "-",
+    mobile: req.body.phoneno,
+    li_number: "-",
+    ve_number: "-",
+    email: req.body.email,
+    j_date: j_d,
+  });
+
+  // console.log(bio);
 
   user.save((err) => {
     if (err) {
@@ -294,8 +292,14 @@ app.post("/sign_up", (req, res) => {
       req.flash("error", "Error creating user");
       return res.redirect("/sign_up");
     }
+    bio.save((err) => {
+      if (err) {
+        req.flash("error", "Error creating user bio");
+        return res.redirect("/sign_up");
+      }
+      res.redirect("/login");
+    });
     // console.log(user);
-    res.redirect("/login");
   });
 });
 
@@ -626,7 +630,84 @@ app.get("/info", function (req, res) {
 app.get("/driver_profile", function (req, res) {
   // console.log(req.user.email);
   if (req.user) {
-    res.render("driver_profile", { username: req.user.email });
+    Driver_bio.findOne({ email: req.user.email }, function (err, founduser) {
+      res.render("driver_profile", {
+        username: req.user.email,
+        First_Name: founduser.frist_name,
+        licence_Number: founduser.li_number,
+        Last_Name: founduser.last_name,
+        Vehicle_Number: founduser.ve_number,
+        Birthday: founduser.birtdate,
+        Mobile: founduser.mobile,
+        Cabby_joining_date: founduser.j_date,
+      });
+    });
+  } else {
+    res.redirect("/");
+  }
+});
+
+app.get("/edit_driver_profile", function (req, res) {
+  // console.log(req.user.email);
+  if (req.user) {
+    Driver_bio.findOne({ email: req.user.email }, function (err, founduser) {
+      res.render("edit_driver_profile", {
+        username: req.user.email,
+        First_Name: founduser.frist_name,
+        licence_Number: founduser.li_number,
+        Last_Name: founduser.last_name,
+        Vehicle_Number: founduser.ve_number,
+        Birthday: founduser.birtdate,
+        Mobile: founduser.mobile,
+        Cabby_joining_date: founduser.j_date,
+      });
+    });
+  } else {
+    res.redirect("/");
+  }
+});
+
+app.post("/edit_driver_profile", function (req, res) {
+  // console.log(req.user.email);
+  if (req.user) {
+    // Driver_bio.findOneAndUpdate;
+    // console.log(req.body);
+
+    let updateObject = {};
+    if (req.body.frist_name !== "") {
+      updateObject.frist_name = req.body.frist_name;
+    }
+    if (req.body.li_number !== "") {
+      updateObject.li_number = req.body.li_number;
+    }
+    if (req.body.last_name !== "") {
+      updateObject.last_name = req.body.last_name;
+    }
+    if (req.body.ve_number !== "") {
+      updateObject.ve_number = req.body.ve_number;
+    }
+    if (req.body.birthdate !== "") {
+      updateObject.birtdate = req.body.birthdate;
+    }
+    if (req.body.mobile !== "") {
+      updateObject.mobile = req.body.mobile;
+    }
+
+    Driver_bio.findOneAndUpdate(
+      { email: req.user.email },
+      updateObject,
+      { new: true },
+      function (err, doc) {
+        if (err) {
+          console.log("Error updating profile:", err);
+          res.redirect("/driver_profile");
+        } else {
+          // console.log("Profile updated successfully:", doc);
+          res.redirect("/driver_profile");
+        }
+      }
+    );
+    // res.redirect("/driver_profile");
   } else {
     res.redirect("/");
   }

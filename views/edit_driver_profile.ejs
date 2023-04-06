@@ -86,8 +86,9 @@
                         </h1>
                     </div>
                     <ul class="nav nav-pills nav-stacked">
-                        <li class="active"><a href="/driver_profile"> <i class="fa fa-user"></i> Profile</a></li>
-                        <li><a href="/edit_driver_profile"> <i class="fa fa-edit"></i> Edit profile</a></li>
+                        <li><a href="/driver_profile"> <i class="fa fa-user"></i> Profile</a></li>
+                        <li class="active"><a href="/edit_driver_profile"> <i class="fa fa-edit"></i> Edit profile</a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -99,40 +100,53 @@
                     </div>
                     <div class="panel-body bio-graph-info">
                         <h1>Driver Profile</h1>
-                        <div class="row">
-                            <div class="bio-row">
-                                <p><span>First Name </span>: <%=First_Name%>
-                                </p>
+                        <form action="/edit_driver_profile" method="post">
+                            <div class="row">
+                                <div class="bio-row">
+                                    <p><span>First Name </span>: <input type="text" placeholder="Enter Your Name"
+                                            name="frist_name">
+                                    </p>
+                                </div>
+                                <div class="bio-row">
+                                    <p><span>licence Number </span>: <input type="text"
+                                            placeholder="Enter Your licence Number" name="li_number">
+                                    </p>
+                                </div>
+                                <div class="bio-row">
+                                    <p><span>Last Name </span>: <input type="text" placeholder="Enter Your Last Name"
+                                            name="last_name">
+                                    </p>
+                                </div>
+                                <div class="bio-row">
+                                    <p><span>Vehicle Number </span>: <input type="text"
+                                            placeholder="Enter Your Vehicle Number" name="ve_number">
+                                    </p>
+                                </div>
+                                <div class="bio-row">
+                                    <p><span>Birthday</span>: <input type="date" name="birthdate">
+                                    </p>
+                                </div>
+                                <div class="bio-row">
+                                    <p><span>Email </span>: <%= username %>
+                                    </p>
+                                </div>
+                                <div class="bio-row">
+                                    <p><span>Mobile </span>:<input type="tel" placeholder="Enter Your Phone Number"
+                                            name="mobile"
+                                            pattern="\+?\d{0,2}[\s\(\-]?([0-9]{3})[\s\)\-]?([\s\-]?)([0-9]{3})[\s\-]?([0-9]{2})[\s\-]?([0-9]{2})"
+                                            maxlength="10">
+                                    </p>
+                                </div>
+                                <div class="bio-row">
+                                    <p><span>Cabby joining date </span>: <%= Cabby_joining_date %>
+                                    </p>
+                                </div>
+                                <div class="bio-row">
+                                    <p><span><input type="submit"> </span> <input type="reset">
+                                    </p>
+                                </div>
                             </div>
-                            <div class="bio-row">
-                                <p><span>licence Number </span>: <%=licence_Number%>
-                                </p>
-                            </div>
-                            <div class="bio-row">
-                                <p><span>Last Name </span>: <%=Last_Name%>
-                                </p>
-                            </div>
-                            <div class="bio-row">
-                                <p><span>Vehicle Number </span>: <%=Vehicle_Number%>
-                                </p>
-                            </div>
-                            <div class="bio-row">
-                                <p><span>Birthday</span>: <%=Birthday%>
-                                </p>
-                            </div>
-                            <div class="bio-row">
-                                <p><span>Email </span>: <%= username %>
-                                </p>
-                            </div>
-                            <div class="bio-row">
-                                <p><span>Mobile </span>:<%= Mobile %>
-                                </p>
-                            </div>
-                            <div class="bio-row">
-                                <p><span>Cabby joining date </span>: <%= Cabby_joining_date %>
-                                </p>
-                            </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
 
