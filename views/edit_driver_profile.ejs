@@ -103,46 +103,54 @@
                         <form action="/edit_driver_profile" method="post">
                             <div class="row">
                                 <div class="bio-row">
-                                    <p><span>First Name </span>: <input type="text" placeholder="Enter Your Name"
-                                            name="frist_name">
+                                    <p><span>First Name </span>: <input type="text" class="edit-inp"
+                                            placeholder="Enter Your Name" name="frist_name">
                                     </p>
                                 </div>
                                 <div class="bio-row">
-                                    <p><span>licence Number </span>: <input type="text"
+                                    <p><span>licence Number </span>: <input type="text" class="edit-inp"
                                             placeholder="Enter Your licence Number" name="li_number">
                                     </p>
                                 </div>
                                 <div class="bio-row">
-                                    <p><span>Last Name </span>: <input type="text" placeholder="Enter Your Last Name"
-                                            name="last_name">
+                                    <p><span>Last Name </span>: <input type="text" class="edit-inp"
+                                            placeholder="Enter Your Last Name" name="last_name">
                                     </p>
                                 </div>
                                 <div class="bio-row">
-                                    <p><span>Vehicle Number </span>: <input type="text"
+                                    <p><span>Vehicle Number </span>: <input type="text" class="edit-inp"
                                             placeholder="Enter Your Vehicle Number" name="ve_number">
                                     </p>
                                 </div>
                                 <div class="bio-row">
-                                    <p><span>Birthday</span>: <input type="date" name="birthdate">
+                                    <p><span>Birthday </span>:<input type="date" class="edit-inp" name="birthdate"
+                                            style="margin-left: 10px;line-height: 20px">
                                     </p>
                                 </div>
+
                                 <div class="bio-row">
-                                    <p><span>Email </span>: <%= username %>
-                                    </p>
-                                </div>
-                                <div class="bio-row">
-                                    <p><span>Mobile </span>:<input type="tel" placeholder="Enter Your Phone Number"
-                                            name="mobile"
+                                    <p><span>Mobile </span>:<input type="tel" style="margin-left: 10px"
+                                            placeholder="Enter Your Phone Number" class="edit-inp" name="mobile"
                                             pattern="\+?\d{0,2}[\s\(\-]?([0-9]{3})[\s\)\-]?([\s\-]?)([0-9]{3})[\s\-]?([0-9]{2})[\s\-]?([0-9]{2})"
                                             maxlength="10">
                                     </p>
                                 </div>
                                 <div class="bio-row">
-                                    <p><span>Cabby joining date </span>: <%= Cabby_joining_date %>
+                                    <p><span>Email </span>: <span style="margin-left: 4px">
+                                            <%= username %>
+                                        </span>
                                     </p>
                                 </div>
                                 <div class="bio-row">
-                                    <p><span><input type="submit"> </span> <input type="reset">
+                                    <p style="margin: -40px 0px">Cabby joining date: <span>
+                                            <%= Cabby_joining_date %>
+                                        </span>
+                                    </p>
+                                </div>
+                                <div class="bio-row">
+                                </div>
+                                <div class="bio-row">
+                                    <p><span><input type="submit" id="submit"> </span> <input type="reset" id="reset">
                                     </p>
                                 </div>
                             </div>

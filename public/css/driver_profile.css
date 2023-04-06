@@ -5,7 +5,7 @@ body {
     font-family: 'Open Sans', sans-serif;
     padding: 0px !important;
     margin: 0px !important;
-    font-size: 13px;
+    font-size: 16px;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-font-smoothing: antialiased;
@@ -247,7 +247,7 @@ a {
 }
 
 .bio-row p span {
-    width: 110px;
+    width: 125px;
     display: inline-block;
 }
 
@@ -255,4 +255,47 @@ a:focus,
 a:hover {
     text-decoration: none;
     color: #ffffcc;
+}
+
+.edit-inp{
+    font-size: 14px;
+    color: #f2f2f2;
+    border-radius: 5px;
+    letter-spacing: 2px;
+    border-style: solid;
+    border-color: #b3b3b3;
+    border-width: 1px;
+    padding: 4px 12px;
+    margin-left: 7px;
+    width: 60%;
+}
+
+.container {
+    width: 98%;
+}
+
+/* @media (min-width: 1200px){
+.container {
+    width: 1258px;
+}
+} */
+
+#submit{
+    font-size: 15px;
+    padding: 10px 12px;
+    background-color: black;
+    border-radius: 5px;
+    color: white;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+#reset{
+    font-size: 15px;
+    padding: 10px 12px;
+    background-color: white;
+    border-radius: 5px;
+    color: black;
+    letter-spacing: 2px;
+    text-transform: uppercase;
 }
