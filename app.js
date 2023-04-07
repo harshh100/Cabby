@@ -292,13 +292,16 @@ app.post("/sign_up", (req, res) => {
       req.flash("error", "Error creating user");
       return res.redirect("/sign_up");
     }
-    bio.save((err) => {
-      if (err) {
-        req.flash("error", "Error creating user bio");
-        return res.redirect("/sign_up");
-      }
-      res.redirect("/login");
-    });
+    if (req.body.role == "Auto-driver") {
+      bio.save((err) => {
+        if (err) {
+          req.flash("error", "Error creating user bio");
+          return res.redirect("/sign_up");
+        }
+      });
+    }
+    res.redirect("/login");
+
     // console.log(user);
   });
 });
