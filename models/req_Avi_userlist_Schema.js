@@ -1,6 +1,14 @@
 const mongoose = require("mongoose");
 
-const user_trip_req_Schema = new mongoose.Schema({
+const req_Avi_userlist_Schema = new mongoose.Schema({
+  email: {
+    type: String,
+    require: true,
+  },
+  role: {
+    type: String,
+    require: true,
+  },
   name: {
     type: String,
     require: true,
@@ -27,5 +35,4 @@ const user_trip_req_Schema = new mongoose.Schema({
   },
 });
 
-const user_trip_req = new mongoose.model("user_trip_req", user_trip_req_Schema);
-module.exports = user_trip_req;
+module.exports = req_Avi_userlist_Schema;

@@ -38,149 +38,11 @@ mongoose
   .then(() => console.log("Database connected!"))
   .catch((err) => console.log(err));
 
-// define a user schema
-const trip_list_Schema = new mongoose.Schema({
-  sen_name: {
-    type: String,
-    require: true,
-  },
-  rec_name: {
-    type: String,
-    require: true,
-  },
-  to: {
-    type: String,
-    require: true,
-  },
-  from: {
-    type: String,
-    require: true,
-  },
-  time: {
-    type: String,
-    require: true,
-  },
-  date: {
-    type: String,
-    require: true,
-  },
-  passengers: {
-    type: Number,
-    require: true,
-  },
-  price: {
-    type: Number,
-    require: true,
-  },
-  phoneno: {
-    type: String,
-    require: true,
-  },
-});
-
-const req_Avi_userlist_Schema = new mongoose.Schema({
-  email: {
-    type: String,
-    require: true,
-  },
-  role: {
-    type: String,
-    require: true,
-  },
-  name: {
-    type: String,
-    require: true,
-  },
-  from: {
-    type: String,
-    require: true,
-  },
-  to: {
-    type: String,
-    require: true,
-  },
-  time: {
-    type: String,
-    require: true,
-  },
-  date: {
-    type: String,
-    require: true,
-  },
-  passengers: {
-    type: Number,
-    require: true,
-  },
-});
-
-const userSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    require: true,
-  },
-  email: {
-    type: String,
-    unique: true,
-    require: true,
-    // trim: true,
-    //  match: [/@charusat.edu.in$/, 'please fill a valid email']
-  },
-  password: {
-    type: String,
-    require: true,
-  },
-  phoneno: {
-    type: String,
-    require: true,
-  },
-  gender: {
-    type: String,
-    require: true,
-  },
-  role: {
-    type: String,
-    require: true,
-  },
-  Adv_B_list: [trip_list_Schema],
-  Confirm_avi_list: [trip_list_Schema],
-  req_avi_list: [req_Avi_userlist_Schema],
-});
-
-const driver_bio_Schema = new mongoose.Schema({
-  frist_name: {
-    type: String,
-    require: true,
-  },
-  last_name: {
-    type: String,
-    require: true,
-  },
-  birtdate: {
-    type: String,
-    require: true,
-  },
-  mobile: {
-    type: String,
-    require: true,
-  },
-  li_number: {
-    type: String,
-    require: true,
-  },
-  ve_number: {
-    type: String,
-    require: true,
-  },
-  email: {
-    type: String,
-    require: true,
-    unique: true,
-  },
-  j_date: {
-    type: String,
-    require: true,
-  },
-});
+// define a schemas
+const trip_list_Schema = require("./models/trip_list_Schema");
+const req_Avi_userlist_Schema = require("./models/req_Avi_userlist_Schema");
+const driver_bio_Schema = require("./models/driver_bio_Schema");
+const userSchema = require("./models/userSchema");
 
 // define a User model based on the user schema
 const User = mongoose.model("User", userSchema);
@@ -190,6 +52,7 @@ const Avilableuser_list = mongoose.model(
   req_Avi_userlist_Schema
 );
 const AvilableAuto_list = mongoose.model("AvilableAuto", trip_list_Schema);
+
 // configure passport to use LocalStrategy for authentication
 passport.use(
   new LocalStrategy({ usernameField: "email" }, (email, password, done) => {

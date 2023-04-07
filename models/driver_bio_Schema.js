@@ -1,34 +1,39 @@
 const mongoose = require("mongoose");
 
-const trip_list_Schema = new mongoose.Schema({
-  name: {
+const driver_bio_Schema = new mongoose.Schema({
+  frist_name: {
     type: String,
     require: true,
   },
-  to: {
+  last_name: {
     type: String,
     require: true,
   },
-  from: {
+  birtdate: {
     type: String,
     require: true,
   },
-  time: {
+  mobile: {
     type: String,
     require: true,
   },
-  date: {
+  li_number: {
     type: String,
     require: true,
   },
-  passengers: {
-    type: Number,
+  ve_number: {
+    type: String,
     require: true,
   },
-  price: {
-    type: Number,
+  email: {
+    type: String,
+    require: true,
+    unique: true,
+  },
+  j_date: {
+    type: String,
     require: true,
   },
 });
 
-module.exports = trip_list_Schema;
+module.exports = driver_bio_Schema;
