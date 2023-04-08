@@ -1,6 +1,14 @@
 const mongoose = require("mongoose");
 
 const trip_list_Schema = new mongoose.Schema({
+  sen_name: {
+    type: String,
+    require: true,
+  },
+  rec_name: {
+    type: String,
+    require: true,
+  },
   name: {
     type: String,
     require: true,
