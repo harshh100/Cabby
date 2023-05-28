@@ -92,11 +92,20 @@ app.get("/login", (req, res) => {
 app.post(
   "/login",
   passport.authenticate("local", {
-    successRedirect: "/",
+    // successRedirect: "/",
     failureRedirect: "/login",
     failureFlash: true,
     usernameField: "email",
-  })
+  }),function(req, res) {
+    if (req.body.remember) {
+      // Set a cookie that expires in 30 days
+      req.session.cookie.maxAge = 30 * 24 * 60 * 60 * 1000;
+    } //else {
+    //   // Delete the cookie when the browser is closed
+    //   req.session.cookie.expires = false;
+    // }
+    res.redirect('/');
+  }
 );
 
 // route for logout
