@@ -4,9 +4,11 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
+const bcrypt = require("bcryptjs");
 var flash = require("connect-flash");
 const mongoose = require("mongoose");
 const app = express();
+let port = 4000;
 
 // configure body-parser
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -56,13 +58,14 @@ const AvilableAuto_list = mongoose.model("AvilableAuto", trip_list_Schema);
 // configure passport to use LocalStrategy for authentication
 passport.use(
   new LocalStrategy({ usernameField: "email" }, (email, password, done) => {
-    User.findOne({ email }, (err, user) => {
+    User.findOne({ email }, async (err, user) => {
       // console.log(user);
       if (err) return done(err);
       if (!user) {
         return done(null, false, { message: "Invalid email or password" });
       }
-      if (user.password !== password) {
+      const passwordcorrect = await bcrypt.compare(password, user.password)
+      if (!passwordcorrect) {
         return done(null, false, { message: "Invalid email or password" });
       }
       return done(null, user);
@@ -84,9 +87,10 @@ passport.deserializeUser((id, done) => {
 });
 
 // route for login form
-app.get("/login", (req, res) => {
-  res.render("login", { message: req.flash("error") });
-});
+// app.get("/login", (req, res) => {
+//   res.render("login", { message: req.flash("error") });
+// });
+app.use("/login", require("./routes/login"));
 
 // route for handling login form submission
 app.post(
@@ -96,14 +100,11 @@ app.post(
     failureRedirect: "/login",
     failureFlash: true,
     usernameField: "email",
-  }),function(req, res) {
+  }), function (req, res) {
     if (req.body.remember) {
       // Set a cookie that expires in 30 days
       req.session.cookie.maxAge = 30 * 24 * 60 * 60 * 1000;
-    } //else {
-    //   // Delete the cookie when the browser is closed
-    //   req.session.cookie.expires = false;
-    // }
+    }
     res.redirect('/');
   }
 );
@@ -114,7 +115,7 @@ app.get("/logout", (req, res) => {
     if (err) {
       console.log(err);
     } else {
-      // Redirect to the login page or homepage
+      // Redirect to the login page 
       res.redirect("/login");
     }
   });
@@ -126,11 +127,14 @@ app.get("/sign_up", (req, res) => {
 });
 
 // route for handling user signup form submission
-app.post("/sign_up", (req, res) => {
+app.post("/sign_up", async (req, res) => {
+
+  const salt = await bcrypt.genSalt();
+  const haspassword = await bcrypt.hash(req.body.password, salt);
   const user = new User({
     name: req.body.name,
     email: req.body.email,
-    password: req.body.password,
+    password: haspassword,
     phoneno: req.body.phoneno,
     gender: req.body.gender,
     role: req.body.role,
@@ -493,14 +497,16 @@ app.post("/remove_f_con_u", function (req, res) {
   );
 });
 
-app.get("/info", function (req, res) {
-  // console.log(req.user.email);
-  if (req.user) {
-    res.render("info", { username: req.user.email });
-  } else {
-    res.redirect("/");
-  }
-});
+// app.get("/info", function (req, res) {
+//   // console.log(req.user.email);
+//   if (req.user) {
+//     res.render("info", { username: req.user.email });
+//   } else {
+//     res.redirect("/");
+//   }
+// });
+
+app.use("/info", require("./routes/info"));
 
 app.get("/driver_profile", function (req, res) {
   // console.log(req.user.email);
@@ -589,6 +595,6 @@ app.post("/edit_driver_profile", function (req, res) {
 });
 
 // start the server
-app.listen(3000, () => {
-  console.log("Server started on http://localhost:3000");
+app.listen(port, () => {
+  console.log(`Server started on http://localhost:${port}`);
 });
