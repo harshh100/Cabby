@@ -116,6 +116,7 @@ app.get("/logout", (req, res) => {
       console.log(err);
     } else {
       // Redirect to the login page 
+
       res.redirect("/login");
     }
   });
@@ -123,7 +124,7 @@ app.get("/logout", (req, res) => {
 
 // route for user signup form
 app.get("/sign_up", (req, res) => {
-  res.render("sign_up", { message: req.flash("error") });
+  res.render("sign_up", { message: req.flash() });
 });
 
 // route for handling user signup form submission
@@ -144,7 +145,7 @@ app.post("/sign_up", async (req, res) => {
     var year = date.getFullYear();
     var month = ("0" + (date.getMonth() + 1)).slice(-2);
     var day = ("0" + date.getDate()).slice(-2);
-    return year + "-" + month + "-" + day;
+    return day + "-" + month + "-" + year;
   }
   var today = new Date();
   let j_d = formatDate(today);
@@ -165,19 +166,21 @@ app.post("/sign_up", async (req, res) => {
   user.save((err) => {
     if (err) {
       console.log(err);
-      req.flash("error", "Error creating user");
+      req.flash('error', "Error creating user");
       return res.redirect("/sign_up");
     }
     if (req.body.role == "Auto-driver") {
       bio.save((err) => {
         if (err) {
-          req.flash("error", "Error creating user bio");
+          req.flash('error', "Error creating user bio");
           return res.redirect("/sign_up");
         }
       });
     }
-    res.redirect("/login");
-
+    if (!err) {
+      req.flash('success', "you are sign-up successfully");
+      res.redirect("/sign_up");
+    }
     // console.log(user);
   });
 });

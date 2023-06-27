@@ -7,6 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign-up</title>
     <!-- favicon -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        type="text/css">
+
     <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
@@ -144,6 +147,12 @@
         .con-radio {
             margin: 20px;
         }
+
+        /* .alert {
+            background-color: red;
+            width: 400px;
+            height: 200px;
+        } */
     </style>
 </head>
 
@@ -215,7 +224,17 @@
                             <div class="con-itm">
                                 <button type="submit">Sign-Up</button>
                             </div>
-
+                            <span>
+                                <% if(message.error){ %>
+                                    <div class="alert alert-danger" role="alert">
+                                        <%= message.error %>
+                                    </div>
+                                    <% }else if(message.success){ %>
+                                        <div class="alert alert-success" role="alert">
+                                            <%= message.success %>
+                                        </div>
+                                        <% } %>
+                            </span>
 
                     </form>
                 </div>
