@@ -179,7 +179,7 @@ app.post("/sign_up", async (req, res) => {
     }
     if (!err) {
       req.flash('success', "you are sign-up successfully");
-      res.redirect("/sign_up");
+      res.redirect("/login");
     }
     // console.log(user);
   });
