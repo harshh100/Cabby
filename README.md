@@ -47,7 +47,15 @@ The application will be running at `http://localhost:3000`.
 
 ## Screenshots
 
-*Screenshots of the application will be added here.*
+## Screenshots
+
+![Screenshot 1](Screenshot 2023-03-28 235140.png)
+![Screenshot 2](Screenshot 2023-03-28 235245.png)
+![Screenshot 3](Screenshot 2023-03-28 235713.png)
+![Screenshot 4](Screenshot 2023-03-28 235857.png)
+![Screenshot 5](Screenshot 2023-03-30 194736.png)
+![Screenshot 6](Screenshot 2023-03-31 104919.png).
+
 
 ## Contributing
 
