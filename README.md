@@ -23,7 +23,7 @@ Before you begin, ensure you have met the following requirements:
 
 1. Clone the repository
     ```sh
-    git clone https://github.com/yourusername/cabby.git
+    git clone https://github.com/harshh100/cabby.git
     ```
 2. Navigate to the project directory
     ```sh
@@ -33,17 +33,9 @@ Before you begin, ensure you have met the following requirements:
     ```sh
     npm install
     ```
-4. Set up environment variables
-
-    Create a `.env` file in the root directory and add the following environment variables:
-    ```
-    MONGO_URI=your_mongodb_uri
-    SESSION_SECRET=your_session_secret
-    ```
-
-5. Start the application
+4. Start the application
     ```sh
-    npm start
+    node app.js
     ```
 
 The application will be running at `http://localhost:3000`.
