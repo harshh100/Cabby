@@ -38,7 +38,7 @@ Before you begin, ensure you have met the following requirements:
     node app.js
     ```
 
-The application will be running at `http://localhost:3000`.
+The application will be running at `http://localhost:4000`.
 
 ## Usage
 
