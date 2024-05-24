@@ -45,22 +45,7 @@ The application will be running at `http://localhost:3000`.
 - **Students**: Register and log in to input ride details and select rides from multiple price submissions.
 - **Drivers**: Register and log in to view ride requests and submit proposed prices.
 
-## Screenshots
-
-## Screenshots
-
-![Screenshot 1]([login](https://github.com/harshh100/Cabby/blob/main/login.png))
-![Screenshot 2](Screenshot 2023-03-28 235245.png)
-![Screenshot 3](Screenshot 2023-03-28 235713.png)
-![Screenshot 4](Screenshot 2023-03-28 235857.png)
-![Screenshot 5](Screenshot 2023-03-30 194736.png)
-![Screenshot 6](Screenshot 2023-03-31 104919.png).
-
-
 ## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
 
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
