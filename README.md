@@ -47,12 +47,19 @@ The application will be running at `http://localhost:4000`.
 
 ## Screenshots
 
+**login**
 <img width="1000" alt="image" src="https://github.com/harshh100/Cabby/blob/main/login.png">
+**signup**
 <img width="1000" alt="image" src="https://github.com/harshh100/Cabby/blob/main/signup.png">
+**studenthome**
 <img width="1000" alt="image" src="https://github.com/harshh100/Cabby/blob/main/studenthome.png">
+**bookinghistory**
 <img width="1000" alt="image" src="https://github.com/harshh100/Cabby/blob/main/bookinghistory.png">
+**driverhome**
 <img width="1000" alt="image" src="https://github.com/harshh100/Cabby/blob/main/driverhome.png">
+**driverprofile**
 <img width="1000" alt="image" src="https://github.com/harshh100/Cabby/blob/main/driverprofile.png">
+**info**
 <img width="1000" alt="image" src="https://github.com/harshh100/Cabby/blob/main/info.png">
 
 ## Contributing
