@@ -53,6 +53,7 @@ The application will be running at `http://localhost:4000`.
 <img width="1000" alt="image" src="https://github.com/harshh100/Cabby/blob/main/bookinghistory.png">
 <img width="1000" alt="image" src="https://github.com/harshh100/Cabby/blob/main/driverhome.png">
 <img width="1000" alt="image" src="https://github.com/harshh100/Cabby/blob/main/driverprofile.png">
+<img width="1000" alt="image" src="https://github.com/harshh100/Cabby/blob/main/info.png">
 
 ## Contributing
 
