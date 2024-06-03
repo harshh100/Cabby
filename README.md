@@ -45,9 +45,14 @@ The application will be running at `http://localhost:4000`.
 - **Students**: Register and log in to input ride details and select rides from multiple price submissions.
 - **Drivers**: Register and log in to view ride requests and submit proposed prices.
 
-## Screen Shorts
+## Screenshots
 
-<img width="1728" alt="image" src="https://github.com/harshh100/Cabby/blob/main/login.png">
+<img width="1000" alt="image" src="https://github.com/harshh100/Cabby/blob/main/login.png">
+<img width="1000" alt="image" src="https://github.com/harshh100/Cabby/blob/main/signup.png">
+<img width="1000" alt="image" src="https://github.com/harshh100/Cabby/blob/main/studenthome.png">
+<img width="1000" alt="image" src="https://github.com/harshh100/Cabby/blob/main/bookinghistory.png">
+<img width="1000" alt="image" src="https://github.com/harshh100/Cabby/blob/main/driverhome.png">
+<img width="1000" alt="image" src="https://github.com/harshh100/Cabby/blob/main/driverprofile.png">
 
 ## Contributing
 
