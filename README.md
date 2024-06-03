@@ -45,6 +45,10 @@ The application will be running at `http://localhost:4000`.
 - **Students**: Register and log in to input ride details and select rides from multiple price submissions.
 - **Drivers**: Register and log in to view ride requests and submit proposed prices.
 
+## Screen Shorts
+
+<img width="1728" alt="image" src="https://github.com/harshh100/Cabby/blob/main/login.png">
+
 ## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
